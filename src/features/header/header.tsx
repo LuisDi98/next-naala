@@ -34,13 +34,13 @@ export default function Header() {
 
         <IconButton
           aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
-          icon={menuOpen ? <X size={24} /> : <Menu size={24} />}
           display={{ base: "block", md: "none" }}
           onClick={() => setMenuOpen(!menuOpen)}
           bg="transparent"
           color="white"
-          
-        />
+        >
+          {menuOpen ? <X size={24} /> : <Menu size={24} />}
+        </IconButton>
 
         <Box
           display={{ base: menuOpen ? "flex" : "none", md: "flex" }}

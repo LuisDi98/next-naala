@@ -5,7 +5,7 @@ import { Element } from "react-scroll";
 
 export default function Home() {
   return (
-    <VStack spacing={20} align="center">
+    <VStack align="center">
       <Hero />
       <Element name="modelos">
         <Heading
@@ -45,7 +45,7 @@ export default function Home() {
           Contacto
         </Heading>
       </Element>
-      <VStack spacing={4}>
+      <VStack>
         <Text textAlign="center"
           fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}
           margin={100}

@@ -61,7 +61,7 @@ const CreatePin = () => {
   return (
     <Container maxW="md" py={8}>
       <form onSubmit={handleSubmit}>
-        <VStack spacing={6} align="stretch">
+        <VStack align="stretch">
           <Heading fontSize={{ base: "3xl", md: "4xl", lg: "3xl" }} fontWeight="bold" textAlign="center" mb={6}>
             Formulario para PIN
           </Heading>
@@ -132,7 +132,6 @@ const CreatePin = () => {
               colorScheme="blackAlpha"
               size="lg"
               width="full"
-              isLoading={isPending}
             >
               Generar Pin
             </Button>
