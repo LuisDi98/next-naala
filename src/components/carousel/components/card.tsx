@@ -28,8 +28,8 @@ export default function PropertyCard({ name, image }: PropertyCardProps) {
         <Button 
           flex="1" 
           bgColor="#edddc3" 
-          _hover={{ bg: "#edddc3" }} 
-          color="stone.900" 
+          _hover={{ bg: "#f3e5cf" }} 
+          color="black" 
           fontWeight="bold"
         >
           <Link href={`/pin`}>Personalizar</Link>
@@ -38,8 +38,8 @@ export default function PropertyCard({ name, image }: PropertyCardProps) {
           flex="1" 
           border="2px" 
           borderColor="black" 
-          color="black" 
-          _hover={{ bg: "gray.100" }} 
+          color="white" 
+          _hover={{ bg: "#333333" }} 
           fontWeight="bold"
         >
           <Link href="/">Detalles</Link>
