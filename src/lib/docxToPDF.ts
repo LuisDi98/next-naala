@@ -9,11 +9,9 @@ import PDFDocument from 'pdfkit';
  */
 export const convertDocxToPdf = async (inputPath: string, outputPath: string): Promise<void> => {
     return new Promise((resolve, reject) => {
-        // Leer el archivo DOCX de entrada
         const docxBuffer = fs.readFileSync(inputPath);
         const docx = officegen('docx');
 
-        // Crear un flujo de escritura para el PDF
         const pdfDoc = new PDFDocument();
         const outputStream = fs.createWriteStream(outputPath);
 
@@ -23,13 +21,13 @@ export const convertDocxToPdf = async (inputPath: string, outputPath: string): P
             console.log('DOCX leído con éxito.');
         });
 
-        docx.on('error', (err) => {
+        docx.on('error', (err:any) => {
             console.error('Error al leer el DOCX:', err);
             reject(err);
         });
 
         // Simulación de extracción de texto para PDF
-        docx.on('data', (chunk) => {
+        docx.on('data', (chunk:any) => {
             pdfDoc.text(chunk.toString());
         });
 
