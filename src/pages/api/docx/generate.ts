@@ -24,21 +24,28 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const tempDir = path.join(process.cwd(), 'public', 'temp');
         console.log("templatePath:", templatePath);
         console.log("tempDir:", tempDir);
-        console.log("contractFileName:", `${propietario}-Contrato.docx`);
-        console.log("pdfFileName:", `${propietario}-Contrato.pdf`);
+        console.log("contractFileName:", `${proyecto}-${propietario}-Contrato-Personalizacion.docx`);
+        console.log("pdfFileName:", `${proyecto}-${propietario}-Contrato-Personalizacion.pdf`);
         
-
+        console.log("Checkpoint 1");
+        
         await fs.ensureDir(tempDir);
-
+        console.log("Checkpoint 2");
         const contractFileName = `${propietario}-Contrato.docx`;
+        console.log("Checkpoint 3");
         const pdfFileName = `${propietario}-Contrato.pdf`;
+        console.log("Checkpoint 4");
         const filePath = path.join(tempDir, contractFileName);
+        console.log("Checkpoint 5");
         const pdfPath = path.join(tempDir, pdfFileName);
+        console.log("Checkpoint 6");
 
         const content = await fs.readFile(templatePath, 'binary');
+        console.log("Checkpoint 7");
         const zip = new PizZip(content);
+        console.log("Checkpoint 8");
         const doc = new Docxtemplater(zip);
-        console.log("Hasta aca todo bien!");
+        console.log("Checkpoint 9");
         
 
         const modificaciones = Object.entries(selectedOptions as { [key: string]: any[] }).map(([key, options]) => ({
@@ -64,8 +71,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             modificaciones,
             total,
         });
-
+        console.log("Checkpoint 10");
         doc.render();
+        console.log("Checkpoint 11");
         await fs.writeFile(filePath, doc.getZip().generate({ type: 'nodebuffer' }));
         console.log("Convertir de docx a pdf");
         // Convertir DOCX a PDF
