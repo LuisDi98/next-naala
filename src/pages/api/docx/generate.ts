@@ -16,9 +16,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             return res.status(400).json({ error: 'Faltan datos requeridos' });
         }
         const templatePath = path.join(process.cwd(), 'public', 'Naala_contrato.docx');
-        const tempDir = path.join(process.cwd(), 'public', 'temp'); 
-        console.log("DEBUG PDF: tempDir", tempDir);
-        
+        const tempDir = '/tmp';        
         await fs.ensureDir(tempDir);
         const contractFileName = `${propietario}-Contrato.docx`;
         const pdfFileName = `${propietario}-Contrato.pdf`;
