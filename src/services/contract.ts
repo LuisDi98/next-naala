@@ -26,6 +26,8 @@ export const downloadDocx = async (
     }
     const link = document.createElement("a");
     link.href = "/temp/"+filePath;
+    console.log();
+    
     link.download = filePath;
     document.body.appendChild(link);
     link.click();
