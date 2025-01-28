@@ -16,7 +16,7 @@ import { useRouter } from "next/router";
 const customModalStyles = {
   overlay: {
     backgroundColor: "rgba(0, 0, 0, 0.5)",
-    zIndex: 1000, 
+    zIndex: 1000,
   },
   content: {
     width: "90%",              // Ocupa el 90% del ancho de la pantalla
@@ -47,7 +47,7 @@ export default function Footer({ handleValidation, totalPrice, selectedOptions }
   const router = useRouter();
 
   const handleValidationForm = () => {
-    if(handleValidation()){
+    if (handleValidation()) {
       setIsModalOpen(true)
     }
   }
@@ -82,36 +82,25 @@ export default function Footer({ handleValidation, totalPrice, selectedOptions }
   return (
     <Box as="footer" borderTop="1px" borderColor="gray.200" p={4} bg="white" w="100%" position="sticky" bottom="0" zIndex="10">
       <Container maxW="container.xl">
-        <Flex justify="space-between" align="center" wrap="wrap" gap={4}>
-          <Flex gap={4}>
-            <Button variant="ghost" onClick={() => router.push("/")}>
-              Inicio
-            </Button>
-          </Flex>
-
-          <Flex align="center" gap={4}>
-            <Text fontWeight="bold">Valor de extras: ${totalPrice.toLocaleString()}</Text>
-
-            <Button
-              bgColor="#000"
-              color="#fff"
-              size="lg"
-              p={2}
-              onClick={() => {handleValidationForm()}}
-            >
-              Revisar
-            </Button>
-          </Flex>
+        <Flex justify="flex-end" align="flex-end" wrap="wrap" gap={4}>
+          <Text mb={2.5} fontWeight="bold">Valor de extras: ${totalPrice.toLocaleString()}</Text>
+          <Button
+            bgColor="#000"
+            color="#fff"
+            size="lg"
+            p={2}
+            onClick={() => { handleValidationForm() }}
+          >
+            Revisar
+          </Button>
         </Flex>
       </Container>
-
-      {/* Modal de contrato con React Modal */}
       <Modal
         isOpen={isModalOpen}
         onRequestClose={() => setIsModalOpen(false)}
         style={customModalStyles}
         contentLabel="Resumen del contrato"
-        ariaHideApp={false}  // Para evitar errores en SSR
+        ariaHideApp={false}
       >
         <h2 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "20px" }}>
           Resumen del contrato
@@ -127,11 +116,11 @@ export default function Footer({ handleValidation, totalPrice, selectedOptions }
                 <Box key={index} p={3} border="1px solid #ddd" borderRadius="md" w="100%">
                   <Text fontWeight="bold">{question}</Text>
                   {options.map((option, idx) => (
-                      <Box key={idx} ml={4}>
-                        <Text>Opción: {option.name}</Text>
-                        <Text>Costo: ${option.price.toLocaleString()}</Text>
-                      </Box>
-                    ))}
+                    <Box key={idx} ml={4}>
+                      <Text>Opción: {option.name}</Text>
+                      <Text>Costo: ${option.price.toLocaleString()}</Text>
+                    </Box>
+                  ))}
                 </Box>
               ))}
             </VStack>
@@ -181,7 +170,7 @@ export default function Footer({ handleValidation, totalPrice, selectedOptions }
           )}
 
           {!isAccepted ? (
-            <Button 
+            <Button
               bg="green.400"
               color="black"
               _hover={{ bg: "green.500" }}
@@ -191,7 +180,7 @@ export default function Footer({ handleValidation, totalPrice, selectedOptions }
               Finalizar Contrato
             </Button>
           ) : (
-            <Button 
+            <Button
               bg="blue.200"
               color="black"
               _hover={{ bg: "blue.400" }}

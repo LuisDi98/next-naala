@@ -42,45 +42,30 @@ export default function ModelViewer() {
   const [selectedOptions, setSelectedOptions] = useState<{ [key: string]: [{ name: string; price: number }] }>({});
   const [totalPrice, setTotalPrice] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modelData, setModelData] = useState<any>(null); // Cambiado de variable normal a estado
-
+  const [modelData, setModelData] = useState<any>(null);
   useEffect(() => {
-    if (!router.isReady) return; // Espera hasta que el router esté listo
-
+    if (!router.isReady) return;
     console.log("Model prints");
     console.log("model", model);
-    
     const foundModel = modelsData.find((m: any) => m.model === model);
-    setModelData(foundModel); // Actualizamos el estado
-
+    setModelData(foundModel);
     console.log("modelsData", modelsData);
     console.log("modelData", foundModel);
-
     if (foundModel?.image) {
       setBgImage(foundModel.image);
     }
   }, [router.isReady, model]);
-
   useEffect(() => {
     const pinData = localStorage.getItem("pinData");
-    console.log("pinData", pinData);
-    
-
     if (!pinData) {
       setIsModalOpen(true);
     }
   }, []);
-
   const handleRedirect = () => {
     setIsModalOpen(false);
     router.push("/pin");
   };
-
-  
-  const toggleZoom = () => {
-    setIsZoomed(!isZoomed);
-  };
-
+  const toggleZoom = () => {setIsZoomed(!isZoomed);};
   if (!modelData) {
     return (
       <Flex direction="column" minH="100vh">
@@ -92,7 +77,6 @@ export default function ModelViewer() {
       </Flex>
     );
   }
-
   const handleOptionChange = (selectedValue: string, question: any, questionOptions: any[]) => {
     const selectedOption = questionOptions.find(option => option.name === selectedValue);
     if (!selectedOption) return;
@@ -106,7 +90,6 @@ export default function ModelViewer() {
       return updatedOptions;
     });
   };
-
   const handleCheckboxChange = (option: any, isChecked: boolean, question: any) => {
     setSelectedOptions((prevSelectedOptions) => {
       const updatedOptions : any = { ...prevSelectedOptions };
@@ -118,42 +101,32 @@ export default function ModelViewer() {
           delete updatedOptions[question.text];
         }
       }
-  
       updateTotalPrice(updatedOptions);
-      console.log("Selected Options: ", updatedOptions);
-  
       return updatedOptions;
     });
   };
-  
   const updateTotalPrice = (options: { [key: string]: { name: string; price: number }[] }) => {
     const newTotalPrice = Object.values(options).reduce((total, optionArray) => {
       return total + optionArray.reduce((acc, item) => acc + item.price, 0);
     }, 0);
     setTotalPrice(newTotalPrice);
   };
-
   const handleCategoryClick = (category: any) => {
     if (category.image) {
       setBgImage(category.image);
     }
   };
-
   const handleValidation = () => {
     const requiredFields = modelData.categories.flatMap((category:any) =>
       category.questions.filter((question:any) => !question.checkboxFlag).map((q : any) => q.text)
     );
-  
     const emptyFields = requiredFields.filter((field:any) => !selectedOptions[field]);
-  
     if (emptyFields.length > 0) {
       alert(`Por favor complete todas las opciones antes de continuar: \n- ${emptyFields.join("\n- ")}`);
       return false;
     }
     return true;
   };
-
-
   return (
     <Box>
       <Modal
@@ -229,80 +202,99 @@ export default function ModelViewer() {
           </Box>
 
           <Box w={{ base: "100%", lg: "500px" }} p={4} bg="transparent">
-            <Flex direction="column" gap={4}>
+            <Flex direction="column" gap={10}>
               <Text fontSize="2xl" fontWeight="bold">
                 Bienvenido, marque las opciones que desea agregar a su modelo.
               </Text>
-
-              <Accordion className="gap-8 p-5" defaultIndex={[0]}>
-                {modelData.categories.map((category:any, categoryIndex:any) => (
-                  <AccordionItem 
-                    key={categoryIndex} 
-                    bg="#FFF" 
-                    className="mt-4 p-4 rounded-lg"
+              <Accordion allowToggle className="gap-8 p-5" defaultIndex={[0]}>
+                {modelData.categories.map((category: any, categoryIndex: any) => (
+                  <AccordionItem
+                    key={categoryIndex}
+                    bg="white"
+                    _hover={{ boxShadow: "lg" }}
+                    borderRadius="lg"
+                    boxShadow="sm"
+                    p={4}
+                    marginY={4}
                     onClick={() => handleCategoryClick(category)}
                   >
                     <h2>
                       <AccordionButton>
-                        <Box className="mb-5" flex={1} textAlign="left" fontSize="2xl" fontWeight="bold">
+                        <Box
+                          flex="1"
+                          textAlign="left"
+                          fontSize={{ base: "lg", md: "xl" }}
+                          fontWeight="bold"
+                        >
                           {category.title}
                         </Box>
                         <AccordionIcon />
                       </AccordionButton>
                     </h2>
-                    <AccordionPanel>
-                      <Flex direction="column" gap={2}>
-                        {category.questions.map((question:any, questionIndex:any) => (
-                          <Box key={questionIndex} mb={4} p={4} bg="#F9F9F9" borderRadius="lg">
-                            <Flex align="center" mb={4} gap={2}>
-                              <Text fontWeight="bold" fontSize="lg">
+                    <AccordionPanel padding={4}>
+                      <Flex
+                        direction="column"
+                        gap={4}
+                        flexWrap="wrap"
+                        width="100%"
+                        alignItems="flex-start"
+                      >
+                        {category.questions.map((question: any, questionIndex: any) => (
+                          <Box
+                            key={questionIndex}
+                            padding={4}
+                            bg="gray.50"
+                            borderRadius="md"
+                            border="1px solid"
+                            borderColor="gray.200"
+                            width="100%"
+                          >
+                            <Flex align="center" marginBottom={4} gap={2}>
+                              <Text fontWeight="semibold" fontSize="md">
                                 {question.text}
                               </Text>
                               {question.tooltip && (
                                 <Tooltip content={question.tooltip.description}>
-                                  <HelpCircle 
-                                    size={18} 
-                                    className="cursor-help text-gray-500 hover:text-gray-700" 
+                                  <HelpCircle
+                                    size={20}
+                                    className="cursor-help text-gray-500 hover:text-gray-700"
                                   />
                                 </Tooltip>
                               )}
                             </Flex>
-                            {/* FIN DE CAMBIO */}
-                            
+
                             {question.checkboxFlag ? (
-                              <CheckboxGroup
-                              variant={"subtle"}
-                              >
-                              <VStack gap="4" align="start">
-                                {question.options.map((option:any, optionIndex:any) => (
-                                  <Checkbox 
-                                  key={optionIndex} 
-                                  value={option.name}
-                                  onCheckedChange={(event: any) => handleCheckboxChange(option, event.checked, question)}
-                                  >
-                                    {option.name} - ${option.price}
-                                  </Checkbox>
-                                ))}
-                              </VStack>
+                              <CheckboxGroup>
+                                <VStack gap="2" align="start">
+                                  {question.options.map((option: any, optionIndex: any) => (
+                                    <Checkbox
+                                      key={optionIndex}
+                                      value={option.name}
+                                      onCheckedChange={(event: any) =>
+                                        handleCheckboxChange(option, event.checked, question)
+                                      }
+                                    >
+                                      {option.name} - ${option.price}
+                                    </Checkbox>
+                                  ))}
+                                </VStack>
                               </CheckboxGroup>
-                            
                             ) : (
                               <RadioGroup
-                              key={"subtle"}
-                              variant={"subtle"}
-                              onChange={(event: any) => handleOptionChange(event.target.value, question, question.options)}
-                            >
-                              <VStack gap="4" align="start">
-                                {question.options.map((option:any, optionIndex:any) => (
-                                  <Radio 
-                                    key={optionIndex}
-                                    value={String(option.name)}
-                                  >
-                                    <Text fontSize="lg">{option.name} - ${option.price}</Text>
-                                  </Radio>
-                                ))}
-                              </VStack>
-                            </RadioGroup>
+                                onChange={(event: any) =>
+                                  handleOptionChange(event.target.value, question, question.options)
+                                }
+                              >
+                                <VStack gap="2" align="start">
+                                  {question.options.map((option: any, optionIndex: any) => (
+                                    <Radio key={optionIndex} value={String(option.name)}>
+                                      <Text fontSize="md">
+                                        {option.name} - ${option.price}
+                                      </Text>
+                                    </Radio>
+                                  ))}
+                                </VStack>
+                              </RadioGroup>
                             )}
                           </Box>
                         ))}
