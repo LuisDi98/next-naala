@@ -25,7 +25,9 @@ export const downloadDocx = async (
       throw new Error("No se recibió la ruta del archivo desde el servidor.");
     }
     const link = document.createElement("a");
-    link.href = "/temp/"+filePath;
+    console.log("filePath desde backend: ", filePath);
+    
+    link.href = filePath;
     console.log();
     
     link.download = filePath;
