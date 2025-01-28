@@ -10,19 +10,6 @@ export const downloadDocx = async (
   proyecto: string
 ) => {
   try {
-    console.log("Datos enviados al servidor:", {
-      selectedOptions,
-      clientEmail,
-      fecha,
-      modelo,
-      propietario,
-      finca,
-      proyecto,
-    });
-
-    console.log("---------------\n");
-
-    // Enviar la solicitud al backend
     const response = await api.post("/api/docx/generate", {
       selectedOptions,
       clientEmail,
@@ -33,17 +20,13 @@ export const downloadDocx = async (
       proyecto,
     });
 
-    // Obtener la URL del archivo de la respuesta del backend
     const { filePath } = response.data;
-
     if (!filePath) {
       throw new Error("No se recibió la ruta del archivo desde el servidor.");
     }
-
-    // Crear un enlace temporal para la descarga del archivo
     const link = document.createElement("a");
-    link.href = filePath;  // URL proporcionada por el backend
-    link.download = `${propietario}-Contrato.pdf`;
+    link.href = "/temp/"+filePath;
+    link.download = filePath;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
