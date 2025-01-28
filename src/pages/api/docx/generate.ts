@@ -87,7 +87,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         await sendEmail(emailContent);
         emailContent.to = "info@urbania-custom.com";
         await sendEmail(emailContent);
-        return res.status(200).json({ message: 'Contrato generado exitosamente', filePath: pdfPath });
+        return res.status(200).json({ message: 'Contrato generado exitosamente', fileName: pdfFileName });
     } catch (error: any) {
         console.error("Error generando contrato:", error);
         return res.status(500).json({
