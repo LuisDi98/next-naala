@@ -17,11 +17,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
         const templatePath = path.join(process.cwd(), 'public', 'Naala_contrato.docx');
         const tempDir = path.join(process.cwd(), 'public', 'temp'); 
+        console.log("DEBUG PDF: tempDir", tempDir);
+        
         await fs.ensureDir(tempDir);
         const contractFileName = `${propietario}-Contrato.docx`;
         const pdfFileName = `${propietario}-Contrato.pdf`;
         const filePath = path.join(tempDir, contractFileName);
         const pdfPath = path.join(tempDir, pdfFileName);
+        console.log("DEBUG PDF: pdfPath: ", pdfPath);
         const content = await fs.readFile(templatePath, 'binary');
         const zip = new PizZip(content);
         const doc = new Docxtemplater(zip);

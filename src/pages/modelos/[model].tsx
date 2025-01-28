@@ -42,11 +42,14 @@ export default function ModelViewer() {
   const [selectedOptions, setSelectedOptions] = useState<{ [key: string]: [{ name: string; price: number }] }>({});
   const [totalPrice, setTotalPrice] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modelData, setModelData] = useState<any>(null);
+  const [modelData, setModelData] = useState<any>(null); // Cambiado de variable normal a estado
+
   useEffect(() => {
-    if (!router.isReady) return;
+    if (!router.isReady) return; // Espera hasta que el router esté listo
+
     console.log("Model prints");
     console.log("model", model);
+    
     const foundModel = modelsData.find((m: any) => m.model === model);
     setModelData(foundModel);
     console.log("modelsData", modelsData);
