@@ -96,6 +96,10 @@ export default function ModelViewer() {
   const handleCheckboxChange = (option: any, isChecked: boolean, question: any) => {
     setSelectedOptions((prevSelectedOptions) => {
       const updatedOptions : any = { ...prevSelectedOptions };
+      console.log("modeldata", modelData);
+      console.log("updatedOptions: ", updatedOptions);
+      
+      
       if (isChecked) {
         updatedOptions[question.text] = [...(updatedOptions[question.text] || []), { name: option.name, price: option.price }];
       } else {

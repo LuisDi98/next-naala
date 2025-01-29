@@ -48,36 +48,34 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
   
   const modelPricing: any = {
     Modelo_1: {
-      1: { "Caramel": 0, "Roble Rustico": 0, "Roble provenza": 0 },
+      1: { "Caramel": 0, "Roble Rustico": 0, "Roble provenzal": 0 },
       2: { "Ambos": 649, "Ninguno": 0 },
       3: { "Si": 98, "No": 0 },
       4: { "Si": 193, "No": 0 },
       5: { "Si": 207, "No": 0 },
-      6: { "Belen marfil": 0, "Dessert blanco": 0 },
-      7: { "Liso neve satin": 0, "Space neve satin": 0 },
-      8: { "Opcion 1": 0 },
-      9: { "Opcion 1": 0 },
-      10: { "Opcion 1": 0 },
-      11: { "Sala primer nivel": 41, "Comedor": 41},
-      12: { "Cuarto Principal": 41, "Pasillo": 41, "Escaleras": 41 },
-      13: { "Si": 747, "No": 0 },
-      14: { "Si": 841, "No": 0 },
+      6: { "Norwich Perla Mate": 0, "Norwich Blanco Mate": 0, "Belen Marfil": 0 },
+      7: { "Norwich Perla Mate": 0, "Norwich Blanco Mate": 0, "Belen Marfil": 0 },
+      8: { "Norwich Perla Mate": 0, "Norwich Blanco Mate": 0, "Belen Marfil": 0 },
+      9: { "Beach Grey": 0, "Malaya beige": 0, "Absolute White": 0 },
+      10: { "Beach Grey": 0, "Malaya beige": 0, "Absolute White": 0 },
+      11: { "Comedor": 41, "Sala primer nivel": 41 },
+      12: { "Cuarto Principal": 41, "Pasillo": 41, "Escalera": 41 },
+      13: { "Si": 841, "No": 0 },
     },
     Modelo_2: {
-      1: { "Caramel": 0, "Roble Rustico": 0, "Roble provenza": 0 },
+      1: { "Caramel": 0, "Roble Rustico": 0, "Roble provenzal": 0 },
       2: { "Ambos": 649, "Ninguno": 0 },
       3: { "Si": 497, "No": 0 },
       4: { "Si": 973, "No": 0 },
       5: { "Ambos": 649, "No": 0 },
-      6: { "Belen marfil": 0, "Dessert blanco": 0 },
-      7: { "Liso neve satin": 0, "Space neve satin": 0 },
-      8: { "Opcion 1": 0 },
-      9: { "Opcion 1": 0 },
-      10: { "Opcion 1": 0 },
-      11: { "Cuarto Principal": 41, "Comedor": 41, "Sala primer nivel": 41, "Escaleras": 41, "Habitacion 1": 41, "Habitacion 2": 41 },
-      12: { "Cuarto Principal": 41, "Isla": 41, "Sala primer nivel": 41, "Escaleras": 41, "Habitacion 1": 41, "Habitacion 2": 41 },
-      13: { "Si": 747, "No": 0 },
-      14: { "Si": 841, "No": 0 },
+      6: { "Norwich Perla Mate": 0, "Norwich Blanco Mate": 0, "Belen Marfil": 0 },
+      7: { "Norwich Perla Mate": 0, "Norwich Blanco Mate": 0, "Belen Marfil": 0 },
+      8: { "Norwich Perla Mate": 0, "Norwich Blanco Mate": 0, "Belen Marfil": 0 },
+      9: { "Beach Grey": 0, "Malaya beige": 0, "Absolute White": 0 },
+      10: { "Beach Grey": 0, "Malaya beige": 0, "Absolute White": 0 },
+      11: { "Comedor": 41, "Sala primer nivel": 41},
+      12: { "Cuarto Principal": 41, "Escalera": 41, "Pasillo": 41 },
+      13: { "Si": 841, "No": 0 },
     },
     Modelo_3: { ...model3Pricing },
   };
@@ -86,7 +84,7 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
     categories: [
       {
         title: "Acabados de Muebles",
-        image: "/Naala_assets/Acabados_de_Muebles/bg_4.png",
+        image: "/Naala_assets/Acabados_de_Muebles/mueble_recortado.png",
         questions: [
           {
             id: 1,
@@ -94,7 +92,7 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
             options: [
               { name: "Caramel", image: "/Naala_assets/Acabados_de_Muebles/CARAMEL.jpg" },
               { name: "Roble Rustico", image: "/Naala_assets/Acabados_de_Muebles/Roble Rustico.jpg" },
-              { name: "Roble provenza", image: "/Naala_assets/Acabados_de_Muebles/Roble Provenzal.jpeg" },
+              { name: "Roble provenzal", image: "/Naala_assets/Acabados_de_Muebles/Roble Provenzal.jpeg" },
             ],
           },
           {
@@ -104,7 +102,7 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
               description: "Buque y prevista para empotramiento: Se deja una prevista mediante un buque para el posterior empotramiento de los electrodomésticos. Ambos empotramientos deben realizarse juntos."
             },
             options: [
-              { name: "Ambos" },
+              { name: "Ambos", image: "/Naala_assets/Acabados_de_Muebles/<Model>/Empotrar plantilla y microondas.png" },
               { name: "Ninguno" }
             ],
           },
@@ -118,7 +116,7 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
             id: 3,
             text: "¿Desea añadir una linea neutro adicional?",
             tooltip: {
-              description: "Línea neutro adicional: Se recomienda bajo los siguientes escenarios:\n7.1. Circuitos con alta carga: Si algunos circuitos tienen dispositivos de alto consumo energético.\n7.2. Reducción de interferencias: En sistemas con varios equipos de uso simultáneo."
+              description: "Línea neutro adicional: Se recomienda bajo los siguientes escenarios:\n- Circuitos con alta carga: Si algunos circuitos tienen dispositivos de alto consumo energético.\n- Reducción de interferencias: En sistemas con varios equipos de uso simultáneo."
             },
             options: [
               { name: "Si", image: "/Naala_assets/base_bg.png" },
@@ -164,7 +162,7 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
           },
           {
             id: 7,
-            text: "Como desea el enchape de piso de bano cuarto principal?",
+            text: "Como desea el enchape de piso de baño cuarto principal?",
             options: [
               { name: "Norwich Perla Mate", image: "/Naala_assets/Acabados/Norwich Perla Mate.jpg" },
               { name: "Norwich Blanco Mate", image: "/Naala_assets/Acabados/Norwich Blanco Mate.jpg" },
@@ -173,7 +171,7 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
           },
           {
             id: 8,
-            text: "Como desea el enchape de piso de bano auxiliar?",
+            text: "Como desea el enchape de piso de baño auxiliar?",
             options: [
               { name: "Norwich Perla Mate", image: "/Naala_assets/Acabados/Norwich Perla Mate.jpg" },
               { name: "Norwich Blanco Mate", image: "/Naala_assets/Acabados/Norwich Blanco Mate.jpg" },
@@ -191,7 +189,7 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
           },
           {
             id: 10,
-            text: "Como desea el enchape de paredes de ducha de bano auxiliar?",
+            text: "Como desea el enchape de paredes de ducha de baño auxiliar?",
             options: [
               { name: "Beach Grey", image: "/Naala_assets/Acabados/Beach Gray.jpg" },
               { name: "Malaya beige", image: "/Naala_assets/Acabados/Malaya beige.jpg" },
@@ -278,7 +276,7 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
           description: "Bodega bajo las gradas: La selección de la bodega incluye un punto de luz y un tomacorriente de 120 V."
         },
         options: [
-          { name: "Si", image: "" },
+          { name: "Si", image: "/Naala_assets/Equipamiento/<Model>/Bodega-bajo-gradas.png" },
           { name: "No", image: "" },
         ],
       }

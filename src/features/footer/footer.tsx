@@ -12,18 +12,17 @@ import { downloadDocx } from "@/services/contract";
 import { toaster } from "../../components/ui/toaster";
 import { useRouter } from "next/router";
 
-// Estilos de React Modal
 const customModalStyles = {
   overlay: {
     backgroundColor: "rgba(0, 0, 0, 0.5)",
     zIndex: 1000,
   },
   content: {
-    width: "90%",              // Ocupa el 90% del ancho de la pantalla
-    maxWidth: "700px",          // Máximo ancho del modal
-    minWidth: "320px",          // Mínimo para pantallas pequeñas
+    width: "90%",
+    maxWidth: "700px",
+    minWidth: "320px",
     height: "auto",
-    maxHeight: "90vh",          // Altura máxima en relación a la pantalla
+    maxHeight: "90vh",
     margin: "auto",
     padding: "20px",
     borderRadius: "12px",
@@ -32,8 +31,6 @@ const customModalStyles = {
     overflowY: "auto" as "auto",
   },
 };
-
-
 
 interface FooterProps {
   handleValidation: any
@@ -45,15 +42,12 @@ export default function Footer({ handleValidation, totalPrice, selectedOptions }
   const [isAccepted, setIsAccepted] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
-
   const handleValidationForm = () => {
     if (handleValidation()) {
       setIsModalOpen(true)
     }
   }
-
   const handleAcceptContract = async () => {
-
     const storedData = localStorage.getItem("pinData");
     if (!storedData) {
       toaster.create({
@@ -62,13 +56,11 @@ export default function Footer({ handleValidation, totalPrice, selectedOptions }
       });
       return;
     }
-
     const pinData = JSON.parse(storedData);
     const fecha = new Date().toLocaleDateString();
     const { correo, modelo, nombre, finca, proyecto } = pinData;
     const clientEmail = correo;
     const propietario = nombre;
-
     await downloadDocx(selectedOptions, clientEmail, fecha, finca, modelo, propietario, proyecto);
     localStorage.removeItem("pinData");
     setIsAccepted(true);
@@ -105,7 +97,6 @@ export default function Footer({ handleValidation, totalPrice, selectedOptions }
         <h2 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "20px" }}>
           Resumen del contrato
         </h2>
-
         {!isAccepted ? (
           <>
             <Text fontWeight="bold" mb={4}>
@@ -155,7 +146,6 @@ export default function Footer({ handleValidation, totalPrice, selectedOptions }
             </Text>
           </>
         )}
-
         <div style={{ display: "flex", justifyContent: "center", gap: "20px", marginTop: "20px" }}>
           {!isAccepted && (
             <Button
@@ -168,7 +158,6 @@ export default function Footer({ handleValidation, totalPrice, selectedOptions }
               Cancelar
             </Button>
           )}
-
           {!isAccepted ? (
             <Button
               bg="green.400"
@@ -192,7 +181,6 @@ export default function Footer({ handleValidation, totalPrice, selectedOptions }
           )}
         </div>
       </Modal>
-
     </Box>
   );
 }
