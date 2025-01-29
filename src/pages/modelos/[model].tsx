@@ -18,6 +18,7 @@ import { Expand, Minimize } from "lucide-react";
 import { Footer } from "@/features/footer";
 import { modelsData } from "@/data/form";
 import { motion } from "framer-motion";
+import mergeImages from "@/utils/imageManager"
 const MotionImage = motion.img;
 const modalStyles = {
   overlay: {
@@ -93,25 +94,29 @@ export default function ModelViewer() {
       return updatedOptions;
     });
   };
-  const handleCheckboxChange = (option: any, isChecked: boolean, question: any) => {
+  const handleCheckboxChange = async (option: any, isChecked: boolean, question: any) => {
     setSelectedOptions((prevSelectedOptions) => {
-      const updatedOptions : any = { ...prevSelectedOptions };
-      console.log("modeldata", modelData);
-      console.log("updatedOptions: ", updatedOptions);
-      
-      
+      const updatedOptions: any = { ...prevSelectedOptions };
+  
       if (isChecked) {
-        updatedOptions[question.text] = [...(updatedOptions[question.text] || []), { name: option.name, price: option.price }];
+        updatedOptions[question.text] = [...(updatedOptions[question.text] || []), { name: option.name, price: option.price, image: option.image }];
       } else {
-        updatedOptions[question.text] = updatedOptions[question.text].filter((item:any) => item.name !== option.name);
+        updatedOptions[question.text] = updatedOptions[question.text].filter((item: any) => item.name !== option.name);
         if (updatedOptions[question.text].length === 0) {
           delete updatedOptions[question.text];
         }
       }
       updateTotalPrice(updatedOptions);
+      console.log("Question.image: ", question.image);
+      const overlayImages = updatedOptions[question.text]?.map((item: any) => item.image) || [];
+      console.log("overlayImages: ", overlayImages);
+      mergeImages(question.image, overlayImages).then((mergedImage) => {
+        setBgImage(mergedImage)
+      });
       return updatedOptions;
     });
   };
+  
   const updateTotalPrice = (options: { [key: string]: { name: string; price: number }[] }) => {
     const newTotalPrice = Object.values(options).reduce((total, optionArray) => {
       return total + optionArray.reduce((acc, item) => acc + item.price, 0);

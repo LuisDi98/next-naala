@@ -205,13 +205,14 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
             id: 11,
             text: "Desea que se le refuerce el cielo raso del primer nivel?",
             checkboxFlag: true,
+            image: "/Naala_assets/Equipamiento/Modelo_1/vanilla_primer_nivel.png",
             tooltip: {
               description: "Refuerzo en cielo raso: Recomendado para áreas donde se desee instalar luminarias pesadas, como lámparas colgantes o metálicas."
             },
             options: [
              
-              { name: "Comedor", image: "/Naala_assets/Equipamiento/<Model>/Refuerzo en cielorraso.png" },
-              { name: "Sala primer nivel", image: "/Naala_assets/Equipamiento/<Model>/Refuerzo en cielorraso.png" },
+              { name: "Comedor", image: "/Naala_assets/Equipamiento/Modelo_1/comedor_pointer.png" },
+              { name: "Sala primer nivel", image: "/Naala_assets/Equipamiento/Modelo_1/sala_pointer.png" },
               
             ],
           },
@@ -219,13 +220,14 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
             id: 12,
             text: "Desea que se le refuerce el cielo raso del segundo nivel?",
             checkboxFlag: true,
+            image: "/Naala_assets/Equipamiento/Modelo_1/vanilla_segundo_nivel.png",
             tooltip: {
               description: "Refuerzo en cielo raso: Recomendado para áreas donde se desee instalar luminarias pesadas, como lámparas colgantes o metálicas."
             },
             options: [
-              { name: "Cuarto Principal", image: "/Naala_assets/Equipamiento/<Model>/Refuerzo en cielorraso 2do nivel.png" },
-              { name: "Pasillo", image: "/Naala_assets/Equipamiento/<Model>/Refuerzo en cielorraso 2do nivel.png" },
-              { name: "Escalera", image: "/Naala_assets/Equipamiento/<Model>/Refuerzo en cielorraso 2do nivel.png" },
+              { name: "Cuarto Principal", image: "/Naala_assets/Equipamiento/<Model>/habitacion_principal_pointer.png" },
+              { name: "Pasillo", image: "/Naala_assets/Equipamiento/<Model>/pasillo_pointer.png" },
+              { name: "Escalera", image: "/Naala_assets/Equipamiento/<Model>/escalera_pointer.png" },
             ],
           },
           {

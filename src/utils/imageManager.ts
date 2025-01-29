@@ -40,3 +40,4 @@ const mergeImages = async (baseImage: string, overlayImages: string[]): Promise<
     });
   };
   
+export default mergeImages;
