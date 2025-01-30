@@ -172,8 +172,36 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const emailContent = {
             to: clientEmail,
             subject: `Acceso a su contrato de personalización. FF ${finca}, Proyecto: ${proyecto}`,
-            html: `<p>Estimado cliente,</p><p>Adjunto encontrará su contrato con los anexos correspondientes.</p>`,
-            attachments: [{ filename: `Contrato-${propietario}.pdf`, path: finalPdfPath }],
+            html: `
+                <p>Estimado cliente,</p>
+                <p>Reciba un cordial saludo de parte de todo el equipo de Urbania.</p>
+                <p>Por este medio, le compartimos el documento donde podrá revisar y firmar su contrato de personalización.</p>
+                <p><strong>Importante:</strong> Si el contrato no se encuentra firmado de manera digital o escaneado con firma de puño y letra, no se podrá proceder con la personalización de su hogar.</p>
+                <hr style="border: none; border-top: 1px solid #ccc; margin: 20px 0;" />
+                <p style="font-size: 16px; font-weight: 500; text-align: center;">
+                Favor enviar la transferencia a la cuenta:
+                </p>
+                <div style="border: 1px solid #ccc; border-radius: 10px; padding: 15px; text-align: center; font-size: 18px; font-weight: bold; background-color: #f9f9f9;">
+                <span style="color: #007bff;">IBAN: CR21010200009317285965</span> <br>
+                <span style="color: #007bff;">BAC: 931728596</span>
+                </div>
+                <p style="font-size: 16px; font-weight: 500; text-align: center; margin-top: 15px;">
+                Y envíe el comprobante al correo:
+                </p>
+                <p style="font-size: 18px; font-weight: bold; text-align: center; color: #28a745;">
+                <a href="mailto:mfernandez@urbania.cr" style="text-decoration: none; color: #28a745;">
+                    mfernandez@urbania.cr
+                </a>
+                </p>
+                <p>Si tiene alguna consulta o requiere asistencia, no dude en ponerse en contacto con nosotros.</p>
+                <p><strong>Atentamente,</strong></p>
+                <p>Equipo Urbania</p>
+                <img src="cid:urbania_signature" alt="Urbania Signature" style="width: auto; height: auto;" />
+            `,
+            attachments: [
+                { filename: `Contrato-${propietario}.pdf`, path: finalPdfPath },
+                { filename: 'UrbaniaSignature.jpg', path: path.join(process.cwd(), 'public', 'UrbaniaSignature.png'), cid: 'urbania_signature' },
+            ],
         };
 
         await sendEmail(emailContent);
