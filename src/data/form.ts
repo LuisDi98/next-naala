@@ -304,7 +304,7 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
             description: "Refuerzo en cielo raso: Recomendado para áreas donde se desee instalar luminarias pesadas, como lámparas colgantes o metálicas."
           },
           options: [
-            { name: "Sala principal", image: "/Naala_assets/Equipamiento/Modelo_2/sala_pointer.png" },            
+            { name: "Sala principal", image: "/Naala_assets/Equipamiento/Modelo_2/sala_pointer.png", isEmbedded: true, },            
           ],
         },
         {
@@ -317,9 +317,9 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
             description: "Refuerzo en cielo raso: Recomendado para áreas donde se desee instalar luminarias pesadas, como lámparas colgantes o metálicas."
           },
           options: [
-            { name: "Cuarto Principal", image: "/Naala_assets/Equipamiento/Modelo_2/habitacion_principal_pointer.png" },
-            { name: "Pasillo", image: "/Naala_assets/Equipamiento/Modelo_2/pasillo_pointer.png" },
-            { name: "Escalera", image: "/Naala_assets/Equipamiento/Modelo_2/escalera_pointer.png" },
+            { name: "Cuarto Principal", image: "/Naala_assets/Equipamiento/Modelo_2/habitacion_principal_pointer.png", isEmbedded: true, },
+            { name: "Pasillo", image: "/Naala_assets/Equipamiento/Modelo_2/pasillo_pointer.png", isEmbedded: true, },
+            { name: "Escalera", image: "/Naala_assets/Equipamiento/Modelo_2/escalera_pointer.png", isEmbedded: true, },
           ],
         },
       ]
@@ -336,17 +336,17 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
           text: "Desea que se le refuerce el cielo raso del primer nivel?",
           checkboxFlag: true,
           isEmbedded: true,
-          image: "/Naala_assets/Equipamiento/<Model>/vanilla_primer_nivel.png",
+          image: "/Naala_assets/Equipamiento/Modelo_3/vanilla_primer_nivel.png",
           tooltip: {
             description: "Refuerzo en cielo raso: Recomendado para áreas donde se desee instalar luminarias pesadas, como lámparas colgantes o metálicas."
           },
           options: [
-            { name: "Sala principal", image: "/Naala_assets/Equipamiento/<Model>/comedor_pointer.png" },
-            { name: "Comedor", image: "/Naala_assets/Equipamiento/<Model>/habitacion_principal_pointer.png" },
-            { name: "Fregadero 1", image: "/Naala_assets/Equipamiento/<Model>/pasillo_pointer.png" },
-            { name: "Fregadero 2", image: "/Naala_assets/Equipamiento/<Model>/escalera_pointer.png" },
-            { name: "Cocina", image: "/Naala_assets/Equipamiento/<Model>/habitacion_principal_pointer.png" },
-            { name: "Entrada", image: "/Naala_assets/Equipamiento/<Model>/pasillo_pointer.png" },           
+            { name: "Sala principal", image: "/Naala_assets/Equipamiento/Modelo_3/sala_pointer.png", isEmbedded: true, },
+            { name: "Comedor", image: "/Naala_assets/Equipamiento/Modelo_3/comedor_pointer.png", isEmbedded: true, },
+            { name: "Fregadero 1", image: "/Naala_assets/Equipamiento/Modelo_3/fregadero_pointer.png", isEmbedded: true, },
+            { name: "Fregadero 2", image: "/Naala_assets/Equipamiento/Modelo_3/fregadero_2_pointer.png", isEmbedded: true, },
+            { name: "Cocina", image: "/Naala_assets/Equipamiento/Modelo_3/cocina_pointer.png", isEmbedded: true, },
+            { name: "Entrada", image: "/Naala_assets/Equipamiento/Modelo_3/entrada_pointer.png", isEmbedded: true, },           
           ],
         },
         {
@@ -354,14 +354,14 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
           text: "Desea que se le refuerce el cielo raso del segundo nivel?",
           checkboxFlag: true,
           isEmbedded: true,
-          image: "/Naala_assets/Equipamiento/Modelo_1/vanilla_segundo_nivel.png",
+          image: "/Naala_assets/Equipamiento/Modelo_3/vanilla_segundo_nivel.png",
           tooltip: {
             description: "Refuerzo en cielo raso: Recomendado para áreas donde se desee instalar luminarias pesadas, como lámparas colgantes o metálicas."
           },
           options: [
-            { name: "Cuarto Principal", image: "/Naala_assets/Equipamiento/<Model>/habitacion_principal_pointer.png" },
-            { name: "Pasillo", image: "/Naala_assets/Equipamiento/<Model>/pasillo_pointer.png" },
-            { name: "Escalera", image: "/Naala_assets/Equipamiento/<Model>/escalera_pointer.png" },
+            { name: "Cuarto Principal", image: "/Naala_assets/Equipamiento/Modelo_3/habitacion_principal_pointer.png", isEmbedded: true, },
+            { name: "Pasillo", image: "/Naala_assets/Equipamiento/Modelo_3/pasillo_pointer.png", isEmbedded: true, },
+            { name: "Escalera", image: "/Naala_assets/Equipamiento/Modelo_3/escalera_pointer.png", isEmbedded: true, },
             
           ],
         },
