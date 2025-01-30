@@ -5,9 +5,6 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   eslint: {
     ignoreDuringBuilds: true,
-  },
-  experimental: {
-    proxyTimeout: 300000
   }
 };
 
