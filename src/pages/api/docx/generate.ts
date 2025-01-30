@@ -13,6 +13,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(405).json({ error: 'Método no permitido' });
     }
 
+    const timeout = setTimeout(() => {
+        console.error("❌ El proceso está tardando demasiado y será cancelado.");
+        res.status(504).json({ error: "El tiempo de espera ha sido excedido." });
+    }, 295000); // Justo antes del límite de Vercel (295s para evitar corte abrupto)
+
     try {
         const { selectedOptions, clientEmail, fecha, finca, modelo, propietario, proyecto, listaAnexosRadio, listaAnexosCheckbox } = req.body;
 

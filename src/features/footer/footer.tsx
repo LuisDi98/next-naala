@@ -50,6 +50,8 @@ export default function Footer({ handleValidation, totalPrice, selectedOptions, 
     }
   }
   const handleAcceptContract = async () => {
+    console.time("⏳ Tiempo total de ejecución");
+
     const storedData = localStorage.getItem("pinData");
     if (!storedData) {
       toaster.create({
@@ -58,15 +60,27 @@ export default function Footer({ handleValidation, totalPrice, selectedOptions, 
       });
       return;
     }
+
+    console.time("📌 Recuperando datos del contrato");
     const pinData = JSON.parse(storedData);
     const fecha = new Date().toLocaleDateString();
     const { correo, modelo, nombre, finca, proyecto } = pinData;
     const clientEmail = correo;
     const propietario = nombre;
+    console.timeEnd("📌 Recuperando datos del contrato");
+
+    console.time("📄 Generando y descargando contrato");
     await downloadDocx(selectedOptions, clientEmail, fecha, finca, modelo, propietario, proyecto, listaAnexosRadio, listaAnexosCheckbox);
+    console.timeEnd("📄 Generando y descargando contrato");
+
+    console.time("🗑 Limpiando almacenamiento local y actualizando estado");
     localStorage.removeItem("pinData");
     setIsAccepted(true);
+    console.timeEnd("🗑 Limpiando almacenamiento local y actualizando estado");
+
+    console.timeEnd("⏳ Tiempo total de ejecución");
   };
+
 
   const handleFinish = () => {
     setIsModalOpen(false);

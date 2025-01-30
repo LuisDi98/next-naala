@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  experimental: {
+    proxyTimeout: 300000
+  }
 };
 
 export default nextConfig;
