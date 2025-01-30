@@ -36,9 +36,11 @@ interface FooterProps {
   handleValidation: any
   totalPrice: number;
   selectedOptions: { [key: string]: [{ name: string; price: number }] };
+  listaAnexosRadio: string[],
+  listaAnexosCheckbox: { base: string, overlays: string[] }[],
 }
 
-export default function Footer({ handleValidation, totalPrice, selectedOptions }: FooterProps) {
+export default function Footer({ handleValidation, totalPrice, selectedOptions, listaAnexosRadio, listaAnexosCheckbox }: FooterProps) {
   const [isAccepted, setIsAccepted] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
@@ -61,7 +63,7 @@ export default function Footer({ handleValidation, totalPrice, selectedOptions }
     const { correo, modelo, nombre, finca, proyecto } = pinData;
     const clientEmail = correo;
     const propietario = nombre;
-    await downloadDocx(selectedOptions, clientEmail, fecha, finca, modelo, propietario, proyecto);
+    await downloadDocx(selectedOptions, clientEmail, fecha, finca, modelo, propietario, proyecto, listaAnexosRadio, listaAnexosCheckbox);
     localStorage.removeItem("pinData");
     setIsAccepted(true);
   };

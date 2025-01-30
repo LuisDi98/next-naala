@@ -1,25 +1,24 @@
-import fs from "fs";
-import path from "path";
-import type { NextApiRequest, NextApiResponse } from "next";
+import fs from 'fs';
+import path from 'path';
+import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-    if (req.method !== "GET") {
-        return res.status(405).json({ error: "Método no permitido" });
-    }
-
     const { fileName } = req.query;
-    if (!fileName) {
-        return res.status(400).json({ error: "Falta el nombre del archivo" });
+    
+    if (!fileName || typeof fileName !== "string") {
+        return res.status(400).json({ error: "Falta el nombre del archivo." });
     }
 
-    const tempDir = "/tmp";
-    const filePath = path.join(tempDir, fileName as string);
+    const filePath = path.join('/tmp', fileName); // Asegurar que está en /tmp
+    console.log("📂 Intentando servir archivo:", filePath);
 
+    // Verificar si el archivo realmente existe antes de enviarlo
     if (!fs.existsSync(filePath)) {
-        return res.status(404).json({ error: "Archivo no encontrado" });
+        console.error(`❌ El archivo no existe en el servidor: ${filePath}`);
+        return res.status(404).json({ error: "El archivo no está disponible en el servidor." });
     }
 
-    // Configurar la respuesta para descargar el archivo
+    console.log("✅ Archivo encontrado. Enviando...");
     res.setHeader("Content-Disposition", `attachment; filename="${fileName}"`);
     res.setHeader("Content-Type", "application/pdf");
 

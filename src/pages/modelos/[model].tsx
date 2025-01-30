@@ -18,7 +18,7 @@ import { Expand, Minimize } from "lucide-react";
 import { Footer } from "@/features/footer";
 import { modelsData } from "@/data/form";
 import { motion } from "framer-motion";
-import mergeImages from "@/utils/imageManager"
+import { mergeImages } from "@/utils/imageManager"
 const MotionImage = motion.img;
 const modalStyles = {
   overlay: {
@@ -38,38 +38,42 @@ const modalStyles = {
 export default function ModelViewer() {
   const [isZoomed, setIsZoomed] = useState(false);
   const router = useRouter();
-  const { model } : any = router.query;
+  const { model }: any = router.query;
   const [bgImage, setBgImage] = useState("/Naala_assets/base_bg.png");
   const [selectedOptions, setSelectedOptions] = useState<{ [key: string]: [{ name: string; price: number }] }>({});
   const [totalPrice, setTotalPrice] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modelData, setModelData] = useState<any>(null); // Cambiado de variable normal a estado
+  const [modelData, setModelData] = useState<any>(null);
+  
+  // 🔹 Lista separada para imágenes de radios y checkboxes
+  const [listaAnexosRadio, setListaAnexosRadio] = useState<string[]>([]);
+  const [listaAnexosCheckbox, setListaAnexosCheckbox] = useState<{ base: string, overlays: string[] }[]>([]);
 
   useEffect(() => {
-    if (!router.isReady) return; // Espera hasta que el router esté listo
-
-    console.log("Model prints");
-    console.log("model", model);
-    
+    if (!router.isReady) return;
     const foundModel = modelsData.find((m: any) => m.model === model);
     setModelData(foundModel);
-    console.log("modelsData", modelsData);
-    console.log("modelData", foundModel);
     if (foundModel?.image) {
       setBgImage(foundModel.image);
     }
   }, [router.isReady, model]);
+
   useEffect(() => {
     const pinData = localStorage.getItem("pinData");
     if (!pinData) {
       setIsModalOpen(true);
     }
   }, []);
+
   const handleRedirect = () => {
     setIsModalOpen(false);
     router.push("/pin");
   };
-  const toggleZoom = () => {setIsZoomed(!isZoomed);};
+
+  const toggleZoom = () => {
+    setIsZoomed(!isZoomed);
+  };
+
   if (!modelData) {
     return (
       <Flex direction="column" minH="100vh">
@@ -81,25 +85,40 @@ export default function ModelViewer() {
       </Flex>
     );
   }
+
+  // 🔹 Manejo de Radio Buttons
   const handleOptionChange = (selectedValue: string, question: any, questionOptions: any[]) => {
     const selectedOption = questionOptions.find(option => option.name === selectedValue);
     if (!selectedOption) return;
+
     setSelectedOptions((prevSelectedOptions) => {
       const updatedOptions = { ...prevSelectedOptions };
       updatedOptions[question.text] = [{ name: selectedOption.name, price: selectedOption.price }];
       updateTotalPrice(updatedOptions);
+
       if (selectedOption.image) {
         setBgImage(selectedOption.image);
       }
+
+      // 🔹 Guardar solo imágenes de radios
+      setListaAnexosRadio((prevLista) => {
+        if (selectedOption.isEmbedded) {
+          return [...prevLista.filter(img => img !== selectedOption.image), selectedOption.image];
+        }
+        return prevLista;
+      });
+
       return updatedOptions;
     });
   };
+
   const handleCheckboxChange = async (option: any, isChecked: boolean, question: any) => {
     setSelectedOptions((prevSelectedOptions) => {
       const updatedOptions: any = { ...prevSelectedOptions };
-  
       if (isChecked) {
-        updatedOptions[question.text] = [...(updatedOptions[question.text] || []), { name: option.name, price: option.price, image: option.image }];
+        if (!updatedOptions[question.text]?.some((item: any) => item.name === option.name)) {
+          updatedOptions[question.text] = [...(updatedOptions[question.text] || []), { name: option.name, price: option.price, image: option.image }];
+        }
       } else {
         updatedOptions[question.text] = updatedOptions[question.text].filter((item: any) => item.name !== option.name);
         if (updatedOptions[question.text].length === 0) {
@@ -107,38 +126,65 @@ export default function ModelViewer() {
         }
       }
       updateTotalPrice(updatedOptions);
-      console.log("Question.image: ", question.image);
       const overlayImages = updatedOptions[question.text]?.map((item: any) => item.image) || [];
-      console.log("overlayImages: ", overlayImages);
-      mergeImages(question.image, overlayImages).then((mergedImage) => {
-        setBgImage(mergedImage)
+      mergeImages(question.image, overlayImages).then((mergedImage: any) => {
+        setBgImage(mergedImage);
       });
       return updatedOptions;
     });
+    if (isChecked && option.isEmbedded) {
+      setListaAnexosCheckbox((prevLista) => {
+        const existingIndex = prevLista.findIndex(entry => entry.base === question.image);
+        if (existingIndex !== -1) {
+          const updatedList = [...prevLista];
+          const overlaysSet = new Set(updatedList[existingIndex].overlays);
+          overlaysSet.add(option.image); // Añadir sin duplicados
+          updatedList[existingIndex].overlays = Array.from(overlaysSet);
+          return updatedList;
+        } else {
+          const newEntry = { base: question.image, overlays: [option.image] };
+          return [...prevLista, newEntry];
+        }
+      });
+    } else if (!isChecked) {
+      setListaAnexosCheckbox((prevLista) => {
+        const newList = prevLista.map(entry => {
+          if (entry.base === question.image) {
+            return { ...entry, overlays: entry.overlays.filter(img => img !== option.image) };
+          }
+          return entry;
+        }).filter(entry => entry.overlays.length > 0); // Eliminamos los vacíos
+        return newList;
+      });
+    }
   };
-  
+
   const updateTotalPrice = (options: { [key: string]: { name: string; price: number }[] }) => {
     const newTotalPrice = Object.values(options).reduce((total, optionArray) => {
       return total + optionArray.reduce((acc, item) => acc + item.price, 0);
     }, 0);
     setTotalPrice(newTotalPrice);
   };
+
   const handleCategoryClick = (category: any) => {
     if (category.image) {
       setBgImage(category.image);
     }
   };
+
   const handleValidation = () => {
-    const requiredFields = modelData.categories.flatMap((category:any) =>
-      category.questions.filter((question:any) => !question.checkboxFlag).map((q : any) => q.text)
+    const requiredFields = modelData.categories.flatMap((category: any) =>
+      category.questions.filter((question: any) => !question.checkboxFlag).map((q: any) => q.text)
     );
-    const emptyFields = requiredFields.filter((field:any) => !selectedOptions[field]);
+    const emptyFields = requiredFields.filter((field: any) => !selectedOptions[field]);
+
     if (emptyFields.length > 0) {
       alert(`Por favor complete todas las opciones antes de continuar: \n- ${emptyFields.join("\n- ")}`);
       return false;
     }
     return true;
   };
+
   return (
     <Box>
       <Modal
@@ -282,9 +328,9 @@ export default function ModelViewer() {
                                     <Checkbox
                                       key={optionIndex}
                                       value={option.name}
-                                      onCheckedChange={(event: any) =>
-                                        handleCheckboxChange(option, event.checked, question)
-                                      }
+                                      onCheckedChange={(event: any) => {
+                                        handleCheckboxChange(option, event.checked, question);
+                                      }}
                                     >
                                       {option.name} - ${option.price}
                                     </Checkbox>
@@ -319,7 +365,14 @@ export default function ModelViewer() {
           </Box>
         </Flex>
 
-        <Footer handleValidation={handleValidation} totalPrice={totalPrice} selectedOptions={selectedOptions} />
+        <Footer 
+          handleValidation={handleValidation}
+          totalPrice={totalPrice}
+          selectedOptions={selectedOptions}
+          listaAnexosRadio={listaAnexosRadio}
+          listaAnexosCheckbox={listaAnexosCheckbox}
+          
+        />
       </Flex>
     </Box>
   );

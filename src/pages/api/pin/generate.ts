@@ -32,6 +32,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       pin,
       expiresAt,
     });
+    console.log("Pin", pin);
+    
 
     const emailContent = {
       to: correo,
@@ -57,8 +59,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         ],
     };
 
-    await sendEmail(emailContent);
-    await sendEmail({ ...emailContent, to: process.env.CORPORATE_EMAIL! });
+    //await sendEmail(emailContent);
+    //await sendEmail({ ...emailContent, to: process.env.CORPORATE_EMAIL! });
 
     return res.status(201).json({ message: "PIN generado exitosamente", pin });
   } catch (error) {

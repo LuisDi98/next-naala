@@ -1,49 +1,55 @@
 const addPricesToModel = (modelName: string, categories: any[]) => {
-    return categories.map((category: { questions: any[]; title: string; image: string }) => ({
-      ...category,
-      image: category.image?.replace("<Model>", modelName) || category.image,
-      questions: category.questions.map((question: { options: any[]; text: string; id: string | number }) => ({
+  return categories.map((category: { questions: any[]; title: string; image: string }) => ({
+    ...category,
+    image: category.image?.replace("<Model>", modelName) || category.image,
+    questions: category.questions.map((question: { options: any[]; text: string; id: string | number }) => {
+      const priceData = modelPricing[modelName]?.[question.id];
+      return {
         ...question,
-        options: question.options.map((option: { name: string; image: string }) => ({
-          ...option,
-          price: modelPricing[modelName][question.id][option.name] || 0,
-          image: option.image?.replace("<Model>", modelName) || option.image,
-        })),
-      })),
-    }));
-  };
-  
+        options: question.options.map((option: { name: string; image: string }) => {
+          const price = priceData?.[option.name] ?? 0;
+          return {
+            ...option,
+            price: price,
+            image: option.image?.replace("<Model>", modelName) || option.image,
+          };
+          }),
+      };
+    })
+  })
+  )
+};
   const mergeCategories = (
-    baseCategories: { title: string; questions: any[] }[],
-    additionalCategories: { title: string; questions: any[] }
+      baseCategories: { title: string; questions: any[] }[],
+      additionalCategories: { title: string; questions: any[] }[]
   ) => {
-    const additionalCategoriesArray = Array.isArray(additionalCategories) ? additionalCategories : [additionalCategories];
-    return [...baseCategories, ...additionalCategoriesArray].reduce((acc, category) => {
-      const existingCategory = acc.find((cat: { title: string }) => cat.title === category.title);
-      if (existingCategory) {
-        existingCategory.questions = existingCategory.questions.concat(category.questions);
-      } else {
-        acc.push(category);
-      }
-      return acc;
-    }, []);
+      return [...baseCategories, ...additionalCategories].reduce((acc, category) => {
+          const existingCategory = acc.find((cat: { title: string }) => cat.title === category.title);
+          if (existingCategory) {
+              existingCategory.questions = [...existingCategory.questions, ...category.questions];
+          } else {
+              acc.push(category);
+          }
+          return acc;
+      }, [] as { title: string; questions: any[] }[]);
   };
-  
+
   const model3Pricing = {
     1: { "Caramel": 0, "Roble Rustico": 0, "Roble provenza": 0 },
     2: { "Ambos": 649, "Ninguno": 0 },
     3: { "Si": 174, "No": 0 },
     4: { "Si": 193, "No": 0 },
     5: { "Si": 207, "No": 0 },
-    6: { "Belen marfil": 0, "Dessert blanco": 0 },
-    7: { "Liso neve satin": 0, "Space neve satin": 0 },
-    8: { "Opcion 1": 0 },
-    9: { "Opcion 1": 0 },
-    10: { "Opcion 1": 0 },
-    11: { "Cuarto Principal": 41, "Isla": 41, "Sala primer nivel": 41, "Escaleras": 41, "Habitacion 1": 41, "Habitacion 2": 41 },
-    12: { "Cuarto Principal": 41, "Isla": 41, "Sala primer nivel": 41, "Escaleras": 41, "Habitacion 1": 41, "Habitacion 2": 41 },
-    13: { "Si": 747, "No": 0 },
-    14: { "Si": 841, "No": 0 },
+    6: { "Norwich Perla Mate": 0, "Norwich Blanco Mate": 0, "Belen Marfil": 0 },
+    7: { "Norwich Perla Mate": 0, "Norwich Blanco Mate": 0, "Belen Marfil": 0 },
+    8: { "Norwich Perla Mate": 0, "Norwich Blanco Mate": 0, "Belen Marfil": 0 },
+    9: { "Beach Grey": 0, "Malaya beige": 0, "Absolute White": 0 },
+    10: { "Beach Grey": 0, "Malaya beige": 0, "Absolute White": 0 },
+    11: { "Si": 841, "No": 0 },
+    12: { "Sala principal": 41, "Comedor": 41, "Fregadero 1": 41, "Fregadero 2": 41, "Cocina": 41, "Entrada": 41 },
+    13: { "Cuarto Principal": 41, "Pasillo": 41, "Escalera": 41 },
+    14: { "Si": 747, "No": 0 }
+    
   };
   
   const modelPricing: any = {
@@ -58,24 +64,30 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
       8: { "Norwich Perla Mate": 0, "Norwich Blanco Mate": 0, "Belen Marfil": 0 },
       9: { "Beach Grey": 0, "Malaya beige": 0, "Absolute White": 0 },
       10: { "Beach Grey": 0, "Malaya beige": 0, "Absolute White": 0 },
-      11: { "Comedor": 41, "Sala primer nivel": 41 },
-      12: { "Cuarto Principal": 41, "Pasillo": 41, "Escalera": 41 },
-      13: { "Si": 841, "No": 0 },
+      11: { "Si": 841, "No": 0 },
+      12: { "Comedor": 41, "Sala primer nivel": 41 },
+      13: { "Cuarto Principal": 41, "Pasillo": 41, "Escalera": 41 },
+      
     },
     Modelo_2: {
       1: { "Caramel": 0, "Roble Rustico": 0, "Roble provenzal": 0 },
       2: { "Ambos": 649, "Ninguno": 0 },
-      3: { "Si": 497, "No": 0 },
-      4: { "Si": 973, "No": 0 },
-      5: { "Ambos": 649, "No": 0 },
+      3: { "Si": 121, "No": 0 },
+      4: { "Si": 193, "No": 0 },
+      5: { "Si": 207, "No": 0 },
       6: { "Norwich Perla Mate": 0, "Norwich Blanco Mate": 0, "Belen Marfil": 0 },
       7: { "Norwich Perla Mate": 0, "Norwich Blanco Mate": 0, "Belen Marfil": 0 },
       8: { "Norwich Perla Mate": 0, "Norwich Blanco Mate": 0, "Belen Marfil": 0 },
       9: { "Beach Grey": 0, "Malaya beige": 0, "Absolute White": 0 },
       10: { "Beach Grey": 0, "Malaya beige": 0, "Absolute White": 0 },
-      11: { "Comedor": 41, "Sala primer nivel": 41},
-      12: { "Cuarto Principal": 41, "Escalera": 41, "Pasillo": 41 },
+      11: { "Si": 841, "No": 0 },
+      12: { "Beach Grey": 0, "Malaya beige": 0, "Absolute White": 0 },
       13: { "Si": 841, "No": 0 },
+      14: { "Sala principal": 41},
+      15: { "Cuarto Principal": 41, "Escalera": 41, "Pasillo": 41 },
+      16: { "Si": 497, "No": 0 },
+      17: { "Si": 973, "No": 0 },
+      
     },
     Modelo_3: { ...model3Pricing },
   };
@@ -102,7 +114,7 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
               description: "Buque y prevista para empotramiento: Se deja una prevista mediante un buque para el posterior empotramiento de los electrodomésticos. Ambos empotramientos deben realizarse juntos."
             },
             options: [
-              { name: "Ambos", image: "/Naala_assets/Acabados_de_Muebles/<Model>/Empotrar plantilla y microondas.png" },
+              { name: "Ambos", image: "/Naala_assets/Acabados_de_Muebles/<Model>/Empotrar plantilla y microondas.png", isEmbedded: true, },
               { name: "Ninguno" }
             ],
           },
@@ -130,7 +142,7 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
               description: "Alimentación para vehículo eléctrico: Recomendado si necesitas una toma eléctrica de 240 V, ya sea para un vehículo eléctrico o equipos que lo requieran."
             },
             options: [
-              { name: "Si", image: "/Naala_assets/Previstas_Electricas/<Model>/Tomacorriente-220-adicional.png" },
+              { name: "Si", image: "/Naala_assets/Previstas_Electricas/<Model>/Tomacorriente-220-adicional.png", isEmbedded: true, },
               { name: "No" }
             ],
           },
@@ -141,7 +153,7 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
               description: "Salida para secadora: Ideal si planeas usar una secadora de ropa. Incluye un ducto metálico de 4 pulgadas para la salida del aire caliente."
             },
             options: [
-              { name: "Si", image: "/Naala_assets/Previstas_Electricas/<Model>/Salida de aire caliente.png" },
+              { name: "Si", image: "/Naala_assets/Previstas_Electricas/<Model>/Salida de aire caliente.png", isEmbedded: true, },
               { name: "No" }
             ],
           }
@@ -203,41 +215,13 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
         questions: [
           {
             id: 11,
-            text: "Desea que se le refuerce el cielo raso del primer nivel?",
-            checkboxFlag: true,
-            image: "/Naala_assets/Equipamiento/Modelo_1/vanilla_primer_nivel.png",
-            tooltip: {
-              description: "Refuerzo en cielo raso: Recomendado para áreas donde se desee instalar luminarias pesadas, como lámparas colgantes o metálicas."
-            },
-            options: [
-             
-              { name: "Comedor", image: "/Naala_assets/Equipamiento/Modelo_1/comedor_pointer.png" },
-              { name: "Sala primer nivel", image: "/Naala_assets/Equipamiento/Modelo_1/sala_pointer.png" },
-              
-            ],
-          },
-          {
-            id: 12,
-            text: "Desea que se le refuerce el cielo raso del segundo nivel?",
-            checkboxFlag: true,
-            image: "/Naala_assets/Equipamiento/Modelo_1/vanilla_segundo_nivel.png",
-            tooltip: {
-              description: "Refuerzo en cielo raso: Recomendado para áreas donde se desee instalar luminarias pesadas, como lámparas colgantes o metálicas."
-            },
-            options: [
-              { name: "Cuarto Principal", image: "/Naala_assets/Equipamiento/<Model>/habitacion_principal_pointer.png" },
-              { name: "Pasillo", image: "/Naala_assets/Equipamiento/<Model>/pasillo_pointer.png" },
-              { name: "Escalera", image: "/Naala_assets/Equipamiento/<Model>/escalera_pointer.png" },
-            ],
-          },
-          {
-            id: 13,
             text: "Desea que se le suministre un calentador de agua de 12 Kw?",
+            isEmbedded: true,
             tooltip: {
               description: "Calentador de agua: Recomendado para quienes deseen agua caliente mediante un tanque. Esta opción incluye un calentador instantáneo de 12 kW y la prevista necesaria."
             },
             options: [
-              { name: "Si", image: "/Naala_assets/Equipamiento/<Model>/Calentador de agua.png" },
+              { name: "Si", image: "/Naala_assets/Equipamiento/<Model>/Calentador de agua.png", isEmbedded: true, },
               { name: "No" },
             ],
           },
@@ -245,45 +229,157 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
       }
     ],
   };
-  
-  const model2AdditionalQuestions = {
-    title: "Acabados de Muebles",
-    questions: [
-      {
-        id: 6,
-        text: "¿Desea que coloque un mueble aéreo sobre el fregadero?",
-        options: [
-          { name: "Si", image: "/Naala_assets/Acabados_de_Muebles/<Model>/Adicional-de-mueble-áereo-sobre-fregadero.png" },
-          { name: "No" }
-        ],
-      },
-      {
-        id: 7,
-        text: "¿Desea que coloque un mueble aéreo sobre la refrigeradora?",
-        options: [
-          { name: "Si", image: "/Naala_assets/Acabados_de_Muebles/<Model>/Adicional de mueble áereo sobre refrigeradora.png" },
-          { name: "No" }
-        ],
-      },
-    ],
-  };
-  
-  const model3AdditionalQuestions = {
-    title: "Equipamiento",
-    questions: [
-      {
-        id: 14,
-        text: "Desea que se le construya una bodega bajo las gradas?",
-        tooltip: {
-          description: "Bodega bajo las gradas: La selección de la bodega incluye un punto de luz y un tomacorriente de 120 V."
+
+  const model1AdditionalQuestions = [
+    {
+      title: "Equipamiento",
+      questions: [
+        {
+          id: 12,
+          text: "Desea que se le refuerce el cielo raso del primer nivel?",
+          checkboxFlag: true,
+          image: "/Naala_assets/Equipamiento/Modelo_1/vanilla_primer_nivel.png",
+          tooltip: {
+            description: "Refuerzo en cielo raso: Recomendado para áreas donde se desee instalar luminarias pesadas, como lámparas colgantes o metálicas."
+          },
+          options: [
+          
+            { name: "Comedor", image: "/Naala_assets/Equipamiento/<Model>/comedor_pointer.png", isEmbedded: true },
+            { name: "Sala primer nivel", image: "/Naala_assets/Equipamiento/<Model>/sala_pointer.png", isEmbedded: true },
+            
+          ],
         },
-        options: [
-          { name: "Si", image: "/Naala_assets/Equipamiento/<Model>/Bodega-bajo-gradas.png" },
-          { name: "No", image: "" },
-        ],
-      }
-    ]
-  };
+        {
+          id: 13,
+          text: "Desea que se le refuerce el cielo raso del segundo nivel?",
+          checkboxFlag: true,
+          image: "/Naala_assets/Equipamiento/Modelo_1/vanilla_segundo_nivel.png",
+          isEmbedded: true,
+          tooltip: {
+            description: "Refuerzo en cielo raso: Recomendado para áreas donde se desee instalar luminarias pesadas, como lámparas colgantes o metálicas."
+          },
+          options: [
+            { name: "Cuarto Principal", image: "/Naala_assets/Equipamiento/<Model>/habitacion_principal_pointer.png", isEmbedded: true, },
+            { name: "Pasillo", image: "/Naala_assets/Equipamiento/<Model>/pasillo_pointer.png", isEmbedded: true, },
+            { name: "Escalera", image: "/Naala_assets/Equipamiento/<Model>/escalera_pointer.png", isEmbedded: true, },
+          ],
+        },
+      ],
+
+    }
+  ];
+  
+  const model2AdditionalQuestions = [
+    {
+      title: "Acabados de Muebles",
+      questions: [
+        {
+          id: 16,
+          text: "¿Desea que coloque un mueble aéreo sobre el fregadero?",
+          options: [
+            { name: "Si", image: "/Naala_assets/Acabados_de_Muebles/<Model>/Adicional-de-mueble-áereo-sobre-fregadero.png", isEmbedded: true, },
+            { name: "No" }
+          ],
+        },
+        {
+          id: 17,
+          text: "¿Desea que coloque un mueble aéreo sobre la refrigeradora?",
+          options: [
+            { name: "Si", image: "/Naala_assets/Acabados_de_Muebles/<Model>/Adicional de mueble áereo sobre refrigeradora.png", isEmbedded: true, },
+            { name: "No" }
+          ],
+        },
+      ]
+    },
+    {
+      title: "Equipamiento",
+      questions: [
+        {
+          id: 14,
+          text: "Desea que se le refuerce el cielo raso del primer nivel?",
+          checkboxFlag: true,
+          image: "/Naala_assets/Equipamiento/Modelo_2/vanilla_primer_nivel.png",
+          isEmbedded: true,
+          tooltip: {
+            description: "Refuerzo en cielo raso: Recomendado para áreas donde se desee instalar luminarias pesadas, como lámparas colgantes o metálicas."
+          },
+          options: [
+            { name: "Sala principal", image: "/Naala_assets/Equipamiento/Modelo_2/sala_pointer.png" },            
+          ],
+        },
+        {
+          id: 15,
+          text: "Desea que se le refuerce el cielo raso del segundo nivel?",
+          checkboxFlag: true,
+          isEmbedded: true,
+          image: "/Naala_assets/Equipamiento/Modelo_2/vanilla_segundo_nivel.png",
+          tooltip: {
+            description: "Refuerzo en cielo raso: Recomendado para áreas donde se desee instalar luminarias pesadas, como lámparas colgantes o metálicas."
+          },
+          options: [
+            { name: "Cuarto Principal", image: "/Naala_assets/Equipamiento/Modelo_2/habitacion_principal_pointer.png" },
+            { name: "Pasillo", image: "/Naala_assets/Equipamiento/Modelo_2/pasillo_pointer.png" },
+            { name: "Escalera", image: "/Naala_assets/Equipamiento/Modelo_2/escalera_pointer.png" },
+          ],
+        },
+      ]
+    }
+  ];
+  
+  const model3AdditionalQuestions = 
+  [
+    {
+      title: "Equipamiento",
+      questions: [
+        {
+          id: 12,
+          text: "Desea que se le refuerce el cielo raso del primer nivel?",
+          checkboxFlag: true,
+          isEmbedded: true,
+          image: "/Naala_assets/Equipamiento/<Model>/vanilla_primer_nivel.png",
+          tooltip: {
+            description: "Refuerzo en cielo raso: Recomendado para áreas donde se desee instalar luminarias pesadas, como lámparas colgantes o metálicas."
+          },
+          options: [
+            { name: "Sala principal", image: "/Naala_assets/Equipamiento/<Model>/comedor_pointer.png" },
+            { name: "Comedor", image: "/Naala_assets/Equipamiento/<Model>/habitacion_principal_pointer.png" },
+            { name: "Fregadero 1", image: "/Naala_assets/Equipamiento/<Model>/pasillo_pointer.png" },
+            { name: "Fregadero 2", image: "/Naala_assets/Equipamiento/<Model>/escalera_pointer.png" },
+            { name: "Cocina", image: "/Naala_assets/Equipamiento/<Model>/habitacion_principal_pointer.png" },
+            { name: "Entrada", image: "/Naala_assets/Equipamiento/<Model>/pasillo_pointer.png" },           
+          ],
+        },
+        {
+          id: 13,
+          text: "Desea que se le refuerce el cielo raso del segundo nivel?",
+          checkboxFlag: true,
+          isEmbedded: true,
+          image: "/Naala_assets/Equipamiento/Modelo_1/vanilla_segundo_nivel.png",
+          tooltip: {
+            description: "Refuerzo en cielo raso: Recomendado para áreas donde se desee instalar luminarias pesadas, como lámparas colgantes o metálicas."
+          },
+          options: [
+            { name: "Cuarto Principal", image: "/Naala_assets/Equipamiento/<Model>/habitacion_principal_pointer.png" },
+            { name: "Pasillo", image: "/Naala_assets/Equipamiento/<Model>/pasillo_pointer.png" },
+            { name: "Escalera", image: "/Naala_assets/Equipamiento/<Model>/escalera_pointer.png" },
+            
+          ],
+        },
+        {
+          id: 14,
+          text: "Desea que se le construya una bodega bajo las gradas?",
+          tooltip: {
+            description: "Bodega bajo las gradas: La selección de la bodega incluye un punto de luz y un tomacorriente de 120 V."
+          },
+          options: [
+            { name: "Si", image: "/Naala_assets/Equipamiento/<Model>/Bodega-bajo-gradas.png", isEmbedded: true, },
+            { name: "No", image: "" },
+          ],
+        },
+      ]
+    },
+
+  ];
   
   function deepClone(obj: any) {
     return JSON.parse(JSON.stringify(obj));
@@ -293,7 +389,9 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
     {
       model: "Modelo_1",
       image: "/modelo-1.jpg",
-      categories: addPricesToModel("Modelo_1", deepClone(baseModelData.categories)),
+      categories: addPricesToModel("Modelo_1", 
+        mergeCategories(deepClone(baseModelData.categories), deepClone(model1AdditionalQuestions)),
+      ),
     },
     {
       model: "Modelo_2",

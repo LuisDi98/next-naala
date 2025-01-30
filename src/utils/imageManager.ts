@@ -1,3 +1,29 @@
+const convertImageToBase64 = async (imagePath: string) => {
+  return new Promise<string>((resolve, reject) => {
+      const img = new Image();
+      img.crossOrigin = "Anonymous"; // 🔹 Permite cargar imágenes sin problemas de CORS
+      img.src = imagePath.startsWith("/") ? `${window.location.origin}${imagePath}` : imagePath;
+
+      img.onload = () => {
+          const canvas = document.createElement("canvas");
+          canvas.width = img.width;
+          canvas.height = img.height;
+          const ctx = canvas.getContext("2d");
+
+          if (ctx) {
+              ctx.drawImage(img, 0, 0);
+              const base64String = canvas.toDataURL("image/png");
+              resolve(base64String);
+          } else {
+              reject("Error: No se pudo obtener el contexto del canvas.");
+          }
+      };
+
+      img.onerror = () => reject(`Error cargando imagen: ${imagePath}`);
+  });
+};
+
+
 const mergeImages = async (baseImage: string, overlayImages: string[]): Promise<string> => {
     return new Promise((resolve, reject) => {
       const canvas = document.createElement("canvas");
@@ -40,4 +66,4 @@ const mergeImages = async (baseImage: string, overlayImages: string[]): Promise<
     });
   };
   
-export default mergeImages;
+export { convertImageToBase64, mergeImages};
