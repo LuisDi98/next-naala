@@ -171,7 +171,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             attachments: [{ filename: `Contrato-${propietario}.pdf`, path: finalPdfPath }],
         };
 
-        // await sendEmail(emailContent);
+        await sendEmail(emailContent);
+        await sendEmail({ ...emailContent, to: process.env.CORPORATE_EMAIL! });
 
         console.log("📩 Enviando el archivo directamente en la respuesta...");
         res.setHeader('Content-Type', 'application/pdf');
