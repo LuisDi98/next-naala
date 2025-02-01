@@ -66,13 +66,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         console.log(JSON.stringify({ modificaciones, total, fecha, finca, modelo, propietario }, null, 2));
 
         // **🔹 Inyectar datos en la plantilla DOCX**
-        doc.setData({
-            fecha,
-            finca,
-            modelo,
-            propietario,
-            modificaciones, // 🔹 Nombre corregido para coincidir con `{#modificaciones}`
-            total,
+        doc.render({
+            data: {
+                fecha,
+                finca,
+                modelo,
+                propietario,
+                modificaciones,
+                total,
+            }
         });
 
         console.log("✅ Datos inyectados correctamente en la plantilla.");
@@ -207,10 +209,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         await sendEmail(emailContent);
         await sendEmail({ ...emailContent, to: process.env.CORPORATE_EMAIL! });
 
-        console.log("📩 Enviando el archivo directamente en la respuesta...");
+        
+        const sanitizedFileName = encodeURIComponent(`Contrato-${propietario}.pdf`).replace(/%20/g, '_');
+        console.log(`📄 Nombre del archivo sanitizado: ${sanitizedFileName}`);
         res.setHeader('Content-Type', 'application/pdf');
-        res.setHeader('Content-Disposition', `attachment; filename="Contrato-${propietario}.pdf"`);
-
+        res.setHeader('Content-Disposition', `attachment; filename="${sanitizedFileName}"`);
+        console.log("📩 Enviando el archivo directamente en la respuesta...");
         const pdfStream = fs.createReadStream(finalPdfPath);
         pdfStream.pipe(res);
 
