@@ -66,15 +66,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         console.log(JSON.stringify({ modificaciones, total, fecha, finca, modelo, propietario }, null, 2));
 
         // **🔹 Inyectar datos en la plantilla DOCX**
-        doc.render({
-            data: {
-                fecha,
-                finca,
-                modelo,
-                propietario,
-                modificaciones,
-                total,
-            }
+        doc.setData({
+            fecha,
+            finca,
+            modelo,
+            propietario,
+            modificaciones, // 🔹 Nombre corregido para coincidir con `{#modificaciones}`
+            total,
         });
 
         console.log("✅ Datos inyectados correctamente en la plantilla.");
