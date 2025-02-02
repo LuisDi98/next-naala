@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Link as ScrollLink } from "react-scroll";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { Box, Flex, IconButton, Image, List, ListItem, Text } from "@chakra-ui/react";
+import { Box, Flex, IconButton, Image } from "@chakra-ui/react";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -69,18 +69,19 @@ export default function Header() {
                 </a>
               </Link>
             ) : (
-              <ScrollLink
-                key={index}
-                to={href}
-                smooth={true}
-                duration={500}
-                spy={true}
-                offset={-70}
-                style={{ cursor: "pointer", fontSize: "lg", fontWeight: "bold", color: "white", textDecoration: "none" }}
-                onClick={() => setMenuOpen(false)}
-              >
-                {text}
-              </ScrollLink>
+              <Link key={index} href={`/#${href}`} passHref legacyBehavior>
+                <ScrollLink
+                  to={href}
+                  smooth={true}
+                  duration={500}
+                  spy={true}
+                  offset={-70}
+                  style={{ cursor: "pointer", fontSize: "lg", fontWeight: "bold", color: "white", textDecoration: "none" }}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {text}
+                </ScrollLink>
+              </Link>
             )
           ))}
         </Box>
