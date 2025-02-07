@@ -136,10 +136,24 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         // **🔹 Agregar imágenes al PDF final**
         console.log("📂 Agregando imágenes al PDF final...");
         const pdfDoc = await PDFDocument.load(await fs.readFile(pdfPath));
-        const imagePaths = [...processedRadioImages, ...processedCheckboxImages];
+        // 📌 Procesar imágenes como PDFs
+        for (const imgPath of processedRadioImages) {
+            console.log(`📌 Insertando páginas desde PDF: ${imgPath}.pdf`);
 
-        for (const imgPath of imagePaths) {
+            const pdfImgPath = `${imgPath}.pdf`;
+            const imgPdfBytes = await fs.readFile(pdfImgPath);
+            const imgPdf = await PDFDocument.load(imgPdfBytes);
+
+            const copiedPages = await pdfDoc.copyPages(imgPdf, imgPdf.getPageIndices());
+            copiedPages.forEach((page) => pdfDoc.addPage(page));
+
+            console.log(`✅ Páginas insertadas desde: ${pdfImgPath}`);
+        }
+
+        // 📌 Procesar imágenes PNG
+        for (const imgPath of processedCheckboxImages) {
             console.log(`📌 Insertando imagen en el PDF: ${imgPath}`);
+            
             const imgBytes = await fs.readFile(imgPath);
             const image = await pdfDoc.embedPng(imgBytes);
 
