@@ -92,13 +92,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         // **🔹 Procesar imágenes de radio buttons**
         console.log("📌 Procesando imágenes para anexos...");
-        const processedRadioImages = await Promise.all(listaAnexosRadio.map(async (imageUrl: string, index: number) => {
-            const localPath = path.join(tempDir, `radio_${index}.png`);
-            const imageBuffer = await fs.readFile(path.join(process.cwd(), 'public', imageUrl));
-            await fs.writeFile(localPath, imageBuffer);
-            return localPath;
-        }));
-
         // **🔹 Fusionar imágenes de checkboxes**
         const processedCheckboxImages = await Promise.all(listaAnexosCheckbox.map(async (entry: { base: string; overlays: string[] }, index: number) => {
             const baseImagePath = path.join(process.cwd(), 'public', entry.base);
@@ -137,7 +130,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         console.log("📂 Agregando imágenes al PDF final...");
         const pdfDoc = await PDFDocument.load(await fs.readFile(pdfPath));
         // 📌 Procesar imágenes como PDFs
-        for (const imgPath of processedRadioImages) {
+        for (const imgPath of listaAnexosRadio) {
             console.log(`📌 Insertando páginas desde PDF: ${imgPath}.pdf`);
 
             const pdfImgPath = `${imgPath}.pdf`;
