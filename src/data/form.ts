@@ -167,45 +167,45 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
             id: 6,
             text: "Como desea el enchape del piso general?",
             options: [
-              { name: "Norwich Perla Mate", image: "/Naala_assets/Acabados/Norwich Perla Mate.jpg" },
-              { name: "Norwich Blanco Mate", image: "/Naala_assets/Acabados/Norwich Blanco Mate.jpg" },
-              { name: "Belen Marfil", image: "/Naala_assets/Acabados/Belen Marfil.jpg" },
+              { name: "Norwich Perla Mate 60x60cm", image: "/Naala_assets/Acabados/Norwich Perla Mate.jpg" },
+              { name: "Norwich Blanco Mate 60x60cm", image: "/Naala_assets/Acabados/Norwich Blanco Mate.jpg" },
+              { name: "Belen Marfil 30x60cm", image: "/Naala_assets/Acabados/Belen Marfil.jpg" },
             ],
           },
           {
             id: 7,
             text: "Como desea el enchape de piso de baño cuarto principal?",
             options: [
-              { name: "Norwich Perla Mate", image: "/Naala_assets/Acabados/Norwich Perla Mate.jpg" },
-              { name: "Norwich Blanco Mate", image: "/Naala_assets/Acabados/Norwich Blanco Mate.jpg" },
-              { name: "Belen Marfil", image: "/Naala_assets/Acabados/Belen Marfil.jpg" },
+              { name: "Norwich Perla Mate 60x60cm", image: "/Naala_assets/Acabados/Norwich Perla Mate.jpg" },
+              { name: "Norwich Blanco Mate 60x60cm", image: "/Naala_assets/Acabados/Norwich Blanco Mate.jpg" },
+              { name: "Belen Marfil 30x60cm", image: "/Naala_assets/Acabados/Belen Marfil.jpg" },
             ],
           },
           {
             id: 8,
             text: "Como desea el enchape de piso de baño auxiliar?",
             options: [
-              { name: "Norwich Perla Mate", image: "/Naala_assets/Acabados/Norwich Perla Mate.jpg" },
-              { name: "Norwich Blanco Mate", image: "/Naala_assets/Acabados/Norwich Blanco Mate.jpg" },
-              { name: "Belen Marfil", image: "/Naala_assets/Acabados/Belen Marfil.jpg" },
+              { name: "Norwich Perla Mate 60x60cm", image: "/Naala_assets/Acabados/Norwich Perla Mate.jpg" },
+              { name: "Norwich Blanco Mate 60x60cm", image: "/Naala_assets/Acabados/Norwich Blanco Mate.jpg" },
+              { name: "Belen Marfil 30x60cm", image: "/Naala_assets/Acabados/Belen Marfil.jpg" },
             ],
           },
           {
             id: 9,
             text: "Como desea el enchape de paredes de ducha de cuarto principal?",
             options: [
-              { name: "Beach Grey", image: "/Naala_assets/Acabados/Beach Gray.jpg" },
-              { name: "Malaya beige", image: "/Naala_assets/Acabados/Malaya beige.jpg" },
-              { name: "Absolute White", image: "/Naala_assets/Acabados/Absolute White.jpg" },
+              { name: "Beach Grey 30x60cm", image: "/Naala_assets/Acabados/Beach Gray.jpg" },
+              { name: "Malaya beige 30x60cm", image: "/Naala_assets/Acabados/Malaya beige.jpg" },
+              { name: "Absolute White 30x60cm", image: "/Naala_assets/Acabados/Absolute White.jpg" },
             ],
           },
           {
             id: 10,
             text: "Como desea el enchape de paredes de ducha de baño auxiliar?",
             options: [
-              { name: "Beach Grey", image: "/Naala_assets/Acabados/Beach Gray.jpg" },
-              { name: "Malaya beige", image: "/Naala_assets/Acabados/Malaya beige.jpg" },
-              { name: "Absolute White", image: "/Naala_assets/Acabados/Absolute White.jpg" },
+              { name: "Beach Grey 30x60cm", image: "/Naala_assets/Acabados/Beach Gray.jpg" },
+              { name: "Malaya beige 30x60cm", image: "/Naala_assets/Acabados/Malaya beige.jpg" },
+              { name: "Absolute White 30x60cm", image: "/Naala_assets/Acabados/Absolute White.jpg" },
             ],
           }
         ]
