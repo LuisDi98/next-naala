@@ -132,16 +132,30 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         // 📌 Procesar imágenes como PDFs
         for (const imgPath of listaAnexosRadio) {
             console.log(`📌 Insertando páginas desde PDF: ${imgPath}.pdf`);
-
-            const pdfImgPath = `${imgPath}.pdf`;
-            const imgPdfBytes = await fs.readFile(pdfImgPath);
-            const imgPdf = await PDFDocument.load(imgPdfBytes);
-
-            const copiedPages = await pdfDoc.copyPages(imgPdf, imgPdf.getPageIndices());
-            copiedPages.forEach((page) => pdfDoc.addPage(page));
-
-            console.log(`✅ Páginas insertadas desde: ${pdfImgPath}`);
+        
+            // Obtener la URL pública del PDF
+            const pdfImgUrl = `https://${process.env.NEXT_PUBLIC_VERCEL_URL || req.headers.host}/${imgPath}.pdf`;
+        
+            try {
+                // Descargar el PDF desde su URL pública
+                const response = await fetch(pdfImgUrl);
+        
+                if (!response.ok) {
+                    throw new Error(`Error descargando el PDF: ${response.statusText}`);
+                }
+        
+                const imgPdfBytes = await response.arrayBuffer();
+                const imgPdf = await PDFDocument.load(imgPdfBytes);
+        
+                const copiedPages = await pdfDoc.copyPages(imgPdf, imgPdf.getPageIndices());
+                copiedPages.forEach((page) => pdfDoc.addPage(page));
+        
+                console.log(`✅ Páginas insertadas desde: ${pdfImgUrl}`);
+            } catch (error) {
+                console.error(`❌ Error insertando páginas desde ${pdfImgUrl}:`, error);
+            }
         }
+        
 
         // 📌 Procesar imágenes PNG
         for (const imgPath of processedCheckboxImages) {
