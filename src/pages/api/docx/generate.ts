@@ -134,7 +134,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             console.log(`📌 Insertando páginas desde PDF: ${imgPath}.pdf`);
         
             // Obtener la URL pública del PDF
-            const pdfImgUrl = `https://${process.env.NEXT_PUBLIC_VERCEL_URL || req.headers.host}${imgPath}.pdf`;
+            const pdfImgUrl = `https://${process.env.NEXT_PUBLIC_VERCEL_URL || req.headers.host}/static${imgPath}.pdf`;
+
         
             try {
                 // Descargar el PDF desde su URL pública
