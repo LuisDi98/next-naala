@@ -129,31 +129,26 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         // **🔹 Agregar imágenes al PDF final**
         console.log("📂 Agregando imágenes al PDF final...");
         const pdfDoc = await PDFDocument.load(await fs.readFile(pdfPath));
-        // 📌 Procesar imágenes como PDFs
+        // 📌 Procesar imágenes como PDFs desde `public/`
         for (const imgPath of listaAnexosRadio) {
             console.log(`📌 Insertando páginas desde PDF: ${imgPath}.pdf`);
-        
-            // Obtener la URL pública del PDF
-            const pdfImgUrl = `https://${process.env.NEXT_PUBLIC_VERCEL_URL || req.headers.host}/static${imgPath}.pdf`;
 
-        
             try {
-                // Descargar el PDF desde su URL pública
-                const response = await fetch(pdfImgUrl);
-        
-                if (!response.ok) {
-                    throw new Error(`Error descargando el PDF: ${response.statusText}`);
-                }
-        
-                const imgPdfBytes = await response.arrayBuffer();
+                // 📌 Construir la ruta absoluta del archivo en el sistema de archivos
+                const pdfImgPath = path.join(process.cwd(), 'public', imgPath + '.pdf');
+                console.log("pdfImgPath de public es: ", pdfImgPath);
+
+                // 📌 Leer el archivo directamente en el servidor
+                const imgPdfBytes = await fs.readFile(pdfImgPath);
                 const imgPdf = await PDFDocument.load(imgPdfBytes);
-        
+
+                // 📌 Copiar páginas al documento final
                 const copiedPages = await pdfDoc.copyPages(imgPdf, imgPdf.getPageIndices());
                 copiedPages.forEach((page) => pdfDoc.addPage(page));
-        
-                console.log(`✅ Páginas insertadas desde: ${pdfImgUrl}`);
+
+                console.log(`✅ Páginas insertadas desde: ${pdfImgPath}`);
             } catch (error) {
-                console.error(`❌ Error insertando páginas desde ${pdfImgUrl}:`, error);
+                console.error(`❌ Error insertando páginas desde ${imgPath}.pdf:`, error);
             }
         }
         
