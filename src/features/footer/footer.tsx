@@ -7,6 +7,8 @@ import {
   Flex,
   Text,
   VStack,
+  Spinner,
+  Center,
 } from "@chakra-ui/react";
 import { downloadDocx } from "@/services/contract";
 import { toaster } from "../../components/ui/toaster";
@@ -33,23 +35,27 @@ const customModalStyles = {
 };
 
 interface FooterProps {
-  handleValidation: any
+  handleValidation: any;
   totalPrice: number;
   selectedOptions: { [key: string]: [{ name: string; price: number }] };
-  listaAnexosRadio: string[],
-  listaAnexosCheckbox: { base: string, overlays: string[] }[],
+  listaAnexosRadio: string[];
+  listaAnexosCheckbox: { base: string; overlays: string[] }[];
 }
 
 export default function Footer({ handleValidation, totalPrice, selectedOptions, listaAnexosRadio, listaAnexosCheckbox }: FooterProps) {
   const [isAccepted, setIsAccepted] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false); // ⏳ Estado para la animación de carga
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
+
   const handleValidationForm = () => {
     if (handleValidation()) {
-      setIsModalOpen(true)
+      setIsModalOpen(true);
     }
-  }
+  };
+
   const handleAcceptContract = async () => {
+    setIsProcessing(true); // ⏳ Iniciar animación
     console.time("⏳ Tiempo total de ejecución");
 
     const storedData = localStorage.getItem("pinData");
@@ -58,6 +64,7 @@ export default function Footer({ handleValidation, totalPrice, selectedOptions, 
         description: "No se encontraron datos del contrato. Verifique el PIN.",
         type: "error",
       });
+      setIsProcessing(false); // 🔴 Detener animación si hay error
       return;
     }
 
@@ -79,8 +86,9 @@ export default function Footer({ handleValidation, totalPrice, selectedOptions, 
     console.timeEnd("🗑 Limpiando almacenamiento local y actualizando estado");
 
     console.timeEnd("⏳ Tiempo total de ejecución");
-  };
 
+    setIsProcessing(false); // ✅ Finalizar animación
+  };
 
   const handleFinish = () => {
     setIsModalOpen(false);
@@ -97,12 +105,13 @@ export default function Footer({ handleValidation, totalPrice, selectedOptions, 
             color="#fff"
             size="lg"
             p={2}
-            onClick={() => { handleValidationForm() }}
+            onClick={handleValidationForm}
           >
             Revisar
           </Button>
         </Flex>
       </Container>
+
       <Modal
         isOpen={isModalOpen}
         onRequestClose={() => setIsModalOpen(false)}
@@ -113,7 +122,15 @@ export default function Footer({ handleValidation, totalPrice, selectedOptions, 
         <h2 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "20px" }}>
           Resumen del contrato
         </h2>
-        {!isAccepted ? (
+
+        {isProcessing ? ( // ⏳ Pantalla de carga cuando se genera el contrato
+          <Center flexDirection="column">
+            <Text fontWeight="bold" fontSize="lg" mb={4}>
+              🔄 Generando contrato... Por favor, espere.
+            </Text>
+            <Spinner size="xl" color="blue.500" />
+          </Center>
+        ) : !isAccepted ? (
           <>
             <Text fontWeight="bold" mb={4}>
               Por favor verificar y confirmar sus personalizaciones, una vez confirmado se generará el contrato.
@@ -162,40 +179,43 @@ export default function Footer({ handleValidation, totalPrice, selectedOptions, 
             </Text>
           </>
         )}
-        <div style={{ display: "flex", justifyContent: "center", gap: "20px", marginTop: "20px" }}>
-          {!isAccepted && (
-            <Button
-              bg="gray.200"
-              color="black"
-              _hover={{ bg: "green.300" }}
-              padding={5}
-              onClick={() => setIsModalOpen(false)}
-            >
-              Cancelar
-            </Button>
-          )}
-          {!isAccepted ? (
-            <Button
-              bg="green.400"
-              color="black"
-              _hover={{ bg: "green.500" }}
-              padding={5}
-              onClick={handleAcceptContract}
-            >
-              Finalizar Contrato
-            </Button>
-          ) : (
-            <Button
-              bg="blue.200"
-              color="black"
-              _hover={{ bg: "blue.400" }}
-              padding={5}
-              onClick={handleFinish}
-            >
-              Listo
-            </Button>
-          )}
-        </div>
+
+        {!isProcessing && ( // 🛑 Ocultar botones mientras se genera el contrato
+          <div style={{ display: "flex", justifyContent: "center", gap: "20px", marginTop: "20px" }}>
+            {!isAccepted && (
+              <Button
+                bg="gray.200"
+                color="black"
+                _hover={{ bg: "green.300" }}
+                padding={5}
+                onClick={() => setIsModalOpen(false)}
+              >
+                Cancelar
+              </Button>
+            )}
+            {!isAccepted ? (
+              <Button
+                bg="green.400"
+                color="black"
+                _hover={{ bg: "green.500" }}
+                padding={5}
+                onClick={handleAcceptContract}
+              >
+                Finalizar Contrato
+              </Button>
+            ) : (
+              <Button
+                bg="blue.200"
+                color="black"
+                _hover={{ bg: "blue.400" }}
+                padding={5}
+                onClick={handleFinish}
+              >
+                Listo
+              </Button>
+            )}
+          </div>
+        )}
       </Modal>
     </Box>
   );

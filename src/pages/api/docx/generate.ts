@@ -168,10 +168,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             const scaleFactor = Math.min(pageWidth / image.width, pageHeight / image.height) * 0.85;
             const newWidth = image.width * scaleFactor;
             const newHeight = image.height * scaleFactor;
-
+            page.setHeight(newHeight+50);
             page.drawImage(image, {
                 x: (pageWidth - newWidth) / 2,
-                y: (pageHeight - newHeight) / 2,
+                y: 25,
                 width: newWidth,
                 height: newHeight,
             });
@@ -222,7 +222,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         };
 
         await sendEmail(emailContent);
-        await sendEmail({ ...emailContent, to: process.env.CORPORATE_EMAIL! });
+        await sendEmail({ ...emailContent, to: "personalizaciones@urbania.cr" });
 
         
         const sanitizedFileName = encodeURIComponent(`Contrato-${propietario}.pdf`).replace(/%20/g, '_');
