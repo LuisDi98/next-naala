@@ -48,7 +48,8 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
     11: { "Si": 841, "No": 0 },
     12: { "Sala principal": 41, "Comedor": 41, "Fregadero 1": 41, "Fregadero 2": 41, "Cocina": 41, "Entrada": 41 },
     13: { "Cuarto Principal": 41, "Pasillo": 41, "Escalera": 41 },
-    14: { "Si": 747, "No": 0 }
+    14: { "Si": 747, "No": 0 },
+    20: { "Si": 737, "No": 0 }
     
   };
   
@@ -67,6 +68,7 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
       11: { "Si": 841, "No": 0 },
       12: { "Comedor": 41, "Sala primer nivel": 41 },
       13: { "Cuarto Principal": 41, "Pasillo": 41, "Escalera": 41 },
+      20: { "Si": 481, "No": 0 }
       
     },
     Modelo_2: {
@@ -87,6 +89,7 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
       15: { "Cuarto Principal": 41, "Escalera": 41, "Pasillo": 41 },
       16: { "Si": 497, "No": 0 },
       17: { "Si": 973, "No": 0 },
+      20: { "Si": 591, "No": 0 }
       
     },
     Modelo_3: { ...model3Pricing },
@@ -154,6 +157,14 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
             },
             options: [
               { name: "Si", image: "/Naala_assets/Previstas_Electricas/<Model>/Salida de aire caliente.png", isEmbedded: true, },
+              { name: "No" }
+            ],
+          },
+          {
+            id: 20,
+            text: "¿Desea que se le instalen todas las luminarias de la casa?",
+            options: [
+              { name: "Si", image: "/Naala_assets/Previstas_Electricas/<Model>/luminarias.png", isEmbedded: true, },
               { name: "No" }
             ],
           }
