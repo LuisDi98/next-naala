@@ -61,7 +61,7 @@ export default function ModelViewer() {
   useEffect(() => {
     const pinData = localStorage.getItem("pinData");
     if (!pinData) {
-      setIsModalOpen(false);
+      setIsModalOpen(true);
     }
   }, []);
 
