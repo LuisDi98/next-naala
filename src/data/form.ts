@@ -118,7 +118,7 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
             },
             options: [
               { name: "Ambos", image: "/Naala_assets/Acabados_de_Muebles/<Model>/Empotrar plantilla y microondas.png", isEmbedded: true, },
-              { name: "Ninguno" }
+              { name: "Ninguno", image: "/Naala_assets/Acabados_de_Muebles/<Model>/Empotrar plantilla y microondas.png" }
             ],
           },
         ],
@@ -146,7 +146,7 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
             },
             options: [
               { name: "Si", image: "/Naala_assets/Previstas_Electricas/<Model>/Tomacorriente-220-adicional.png", isEmbedded: true, },
-              { name: "No" }
+              { name: "No", image: "/Naala_assets/Previstas_Electricas/<Model>/Tomacorriente-220-adicional.png" }
             ],
           },
           {
@@ -157,7 +157,7 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
             },
             options: [
               { name: "Si", image: "/Naala_assets/Previstas_Electricas/<Model>/Salida de aire caliente.png", isEmbedded: true, },
-              { name: "No" }
+              { name: "No", image: "/Naala_assets/Previstas_Electricas/<Model>/Salida de aire caliente.png" }
             ],
           },
           {
@@ -165,7 +165,7 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
             text: "¿Desea que se le instalen todas las luminarias de la casa?",
             options: [
               { name: "Si", image: "/Naala_assets/Previstas_Electricas/<Model>/luminarias.png", isEmbedded: true, },
-              { name: "No" }
+              { name: "No", image: "/Naala_assets/Previstas_Electricas/<Model>/luminarias.png" }
             ],
           }
         ],
@@ -233,7 +233,7 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
             },
             options: [
               { name: "Si", image: "/Naala_assets/Equipamiento/<Model>/Calentador de agua.png", isEmbedded: true, },
-              { name: "No" },
+              { name: "No", image: "/Naala_assets/Equipamiento/<Model>/Calentador de agua.png" },
             ],
           },
         ]
@@ -289,7 +289,7 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
           text: "¿Desea que coloque un mueble aéreo sobre el fregadero?",
           options: [
             { name: "Si", image: "/Naala_assets/Acabados_de_Muebles/<Model>/Adicional-de-mueble-áereo-sobre-fregadero.png", isEmbedded: true, },
-            { name: "No" }
+            { name: "No", image: "/Naala_assets/Acabados_de_Muebles/<Model>/Adicional-de-mueble-áereo-sobre-fregadero.png" }
           ],
         },
         {
@@ -297,7 +297,7 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
           text: "¿Desea que coloque un mueble aéreo sobre la refrigeradora?",
           options: [
             { name: "Si", image: "/Naala_assets/Acabados_de_Muebles/<Model>/Adicional de mueble áereo sobre refrigeradora.png", isEmbedded: true, },
-            { name: "No" }
+            { name: "No", image: "/Naala_assets/Acabados_de_Muebles/<Model>/Adicional de mueble áereo sobre refrigeradora.png" }
           ],
         },
       ]
@@ -384,7 +384,7 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
           },
           options: [
             { name: "Si", image: "/Naala_assets/Equipamiento/<Model>/Bodega-bajo-gradas.png", isEmbedded: true, },
-            { name: "No", image: "" },
+            { name: "No", image: "/Naala_assets/Equipamiento/<Model>/Bodega-bajo-gradas.png" },
           ],
         },
       ]

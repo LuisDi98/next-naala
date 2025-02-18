@@ -90,7 +90,6 @@ export default function ModelViewer() {
   const handleOptionChange = (selectedValue: string, question: any, questionOptions: any[]) => {
     const selectedOption = questionOptions.find(option => option.name === selectedValue);
     if (!selectedOption) return;
-
     setSelectedOptions((prevSelectedOptions) => {
       const updatedOptions = { ...prevSelectedOptions };
       updatedOptions[question.text] = [{ name: selectedOption.name, price: selectedOption.price }];
@@ -99,15 +98,17 @@ export default function ModelViewer() {
       if (selectedOption.image) {
         setBgImage(selectedOption.image);
       }
-
       // 🔹 Guardar solo imágenes de radios
       setListaAnexosRadio((prevLista) => {
         if (selectedOption.isEmbedded) {
-          return [...prevLista.filter(img => img !== selectedOption.image), selectedOption.image];
+          const updatedLista = [...prevLista.filter(img => img !== selectedOption.image), selectedOption.image];
+          return updatedLista;
         }
-        return prevLista;
+        else {
+          const updatedLista = prevLista.filter(img => img !== selectedOption.image);
+          return updatedLista;
+        }
       });
-
       return updatedOptions;
     });
   };
@@ -138,7 +139,7 @@ export default function ModelViewer() {
         if (existingIndex !== -1) {
           const updatedList = [...prevLista];
           const overlaysSet = new Set(updatedList[existingIndex].overlays);
-          overlaysSet.add(option.image); // Añadir sin duplicados
+          overlaysSet.add(option.image);
           updatedList[existingIndex].overlays = Array.from(overlaysSet);
           return updatedList;
         } else {
@@ -153,7 +154,7 @@ export default function ModelViewer() {
             return { ...entry, overlays: entry.overlays.filter(img => img !== option.image) };
           }
           return entry;
-        }).filter(entry => entry.overlays.length > 0); // Eliminamos los vacíos
+        }).filter(entry => entry.overlays.length > 0);
         return newList;
       });
     }
