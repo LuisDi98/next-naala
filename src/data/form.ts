@@ -49,8 +49,11 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
     12: { "Sala principal": 41, "Comedor": 41, "Fregadero 1": 41, "Fregadero 2": 41, "Cocina": 41, "Entrada": 41 },
     13: { "Cuarto Principal": 41, "Pasillo": 41, "Escalera": 41 },
     14: { "Si": 747, "No": 0 },
-    20: { "Si": 737, "No": 0 }
-    
+    20: { "Si": 737, "No": 0 },
+    21: { 
+      "Granito Blanco Báltico": 0, "Granito Gran Perla": 0,
+      "Granito Gran Cuarzo Snow White": 0, "Cuarzo Vulcano": 87
+     },
   };
   
   const modelPricing: any = {
@@ -68,8 +71,11 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
       11: { "Si": 841, "No": 0 },
       12: { "Comedor": 41, "Sala primer nivel": 41 },
       13: { "Cuarto Principal": 41, "Pasillo": 41, "Escalera": 41 },
-      20: { "Si": 481, "No": 0 }
-      
+      20: { "Si": 481, "No": 0 },
+      21: { 
+        "Granito Blanco Báltico": 0, "Granito Gran Perla": 0,
+        "Granito Gran Cuarzo Snow White": 0, "Cuarzo Vulcano": 47
+       },
     },
     Modelo_2: {
       1: { "Caramel": 0, "Roble Rustico": 0, "Roble provenzal": 0 },
@@ -89,8 +95,11 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
       15: { "Cuarto Principal": 41, "Escalera": 41, "Pasillo": 41 },
       16: { "Si": 497, "No": 0 },
       17: { "Si": 973, "No": 0 },
-      20: { "Si": 591, "No": 0 }
-      
+      20: { "Si": 591, "No": 0 },
+      21: { 
+        "Granito Blanco Báltico": 0, "Granito Gran Perla": 0,
+        "Granito Gran Cuarzo Snow White": 0, "Cuarzo Vulcano": 56
+       },
     },
     Modelo_3: { ...model3Pricing },
   };
@@ -219,6 +228,22 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
               { name: "Absolute White 30x60cm", image: "/Naala_assets/Acabados/Absolute White.jpg" },
             ],
           }
+        ]
+      },
+      {
+        title: "Sobres",
+        image: "/Naala_assets/base_bg.png",
+        questions: [
+          {
+            id: 21,
+            text: "Como desea el sobre del piso general?",
+            options: [
+              { name: "Granito Blanco Báltico", image: "/Naala_assets/Sobres/Blanco Baltico.jpeg" },
+              { name: "Granito Gran Perla", image:  "/Naala_assets/Sobres/Gran Perla.jpeg" },
+              { name: "Cuarzo Snow White", image: "/Naala_assets/Sobres/Snow White.jpeg" },
+              { name: "Cuarzo Vulcano", image: "/Naala_assets/Sobres/Cuarzo Vulcano.jpeg" },
+            ],
+          },
         ]
       },
       {
