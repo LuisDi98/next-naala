@@ -13,12 +13,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(405).json({ error: 'Método no permitido' });
     }
 
-    const timeout = setTimeout(() => {
-        console.error("❌ El proceso está tardando demasiado y será cancelado.");
-        res.status(504).json({ error: "El tiempo de espera ha sido excedido." });
-    }, 295000); // Justo antes del límite de Vercel (295s para evitar corte abrupto)
+    
 
     try {
+        
         const { selectedOptions, clientEmail, fecha, finca, modelo, propietario, proyecto, listaAnexosRadio, listaAnexosCheckbox } = req.body;
 
         console.log("📥 Recibiendo anexos en el backend...");
@@ -129,6 +127,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         // **🔹 Agregar imágenes al PDF final**
         console.log("📂 Agregando imágenes al PDF final...");
         const pdfDoc = await PDFDocument.load(await fs.readFile(pdfPath));
+        // Anexar pdf de Naala acabados
+        const acabadosPath = path.join(process.cwd(), 'public', 'Naala_acabados.pdf');
+        const acabadosBytes = await fs.readFile(acabadosPath);
+        const acabadosPdf = await PDFDocument.load(acabadosBytes);
+        const copiedAcabadosPages = await pdfDoc.copyPages(acabadosPdf, acabadosPdf.getPageIndices());
+        copiedAcabadosPages.forEach((page) => pdfDoc.addPage(page));
+        console.log("✅ Páginas de PDF base de acabados insertadas correctamente.");
         // 📌 Procesar imágenes como PDFs desde `public/`
         for (const imgPath of listaAnexosRadio) {
             console.log(`📌 Insertando páginas desde PDF: ${imgPath}.pdf`);
@@ -222,7 +227,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         };
 
         await sendEmail(emailContent);
-        await sendEmail({ ...emailContent, to: "personalizaciones@urbania.cr" });
+        //await sendEmail({ ...emailContent, to: "personalizaciones@urbania.cr" });
 
         
         const sanitizedFileName = encodeURIComponent(`Contrato-${propietario}.pdf`).replace(/%20/g, '_');
