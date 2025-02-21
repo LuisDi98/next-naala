@@ -43,7 +43,7 @@ export default function PropertyCard({ name, image }: PropertyCardProps) {
           fontWeight="bold"
         >
           
-          <Link href="/Naala_detalles.pdf">Detalles</Link>
+          <Link href="/Naala_assets/Naala_detalles.pdf" target="_blank" rel="noopener noreferrer">Detalles</Link>
         </Button>
       </CardFooter>
     </CardRoot>
