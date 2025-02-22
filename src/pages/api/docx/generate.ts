@@ -221,7 +221,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         };
 
         await sendEmail(emailContent);
-        //await sendEmail({ ...emailContent, to: "personalizaciones@urbania.cr" });
+        await sendEmail({ ...emailContent, to: "personalizaciones@urbania.cr" });
 
         
         const sanitizedFileName = encodeURIComponent(`Contrato-${propietario}.pdf`).replace(/%20/g, '_');
