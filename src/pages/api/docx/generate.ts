@@ -127,13 +127,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         // **🔹 Agregar imágenes al PDF final**
         console.log("📂 Agregando imágenes al PDF final...");
         const pdfDoc = await PDFDocument.load(await fs.readFile(pdfPath));
-        // Anexar pdf de Naala acabados
-        const acabadosPath = path.join(process.cwd(), 'public', 'Naala_acabados.pdf');
-        const acabadosBytes = await fs.readFile(acabadosPath);
-        const acabadosPdf = await PDFDocument.load(acabadosBytes);
-        const copiedAcabadosPages = await pdfDoc.copyPages(acabadosPdf, acabadosPdf.getPageIndices());
-        copiedAcabadosPages.forEach((page) => pdfDoc.addPage(page));
-        console.log("✅ Páginas de PDF base de acabados insertadas correctamente.");
+
         // 📌 Procesar imágenes como PDFs desde `public/`
         for (const imgPath of listaAnexosRadio) {
             console.log(`📌 Insertando páginas desde PDF: ${imgPath}.pdf`);

@@ -42,7 +42,8 @@ export default function PropertyCard({ name, image }: PropertyCardProps) {
           _hover={{ bg: "#333333" }} 
           fontWeight="bold"
         >
-          <Link href="/">Detalles</Link>
+          
+          <Link href="/Naala_detalles.pdf">Detalles</Link>
         </Button>
       </CardFooter>
     </CardRoot>
