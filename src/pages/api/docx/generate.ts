@@ -207,9 +207,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 <p style="font-size: 18px; font-weight: bold; text-align: center; color: #28a745;">
                 <a href="mailto:mfernandez@urbania.cr" style="text-decoration: none; color: #28a745;">
                     mfernandez@urbania.cr
+                <a href="mailto:clientes@urbania.cr" style="text-decoration: none; color: #28a745;">
+                    clientes@urbania.cr
                 </a>
                 </p>
-                <p>Si tiene alguna consulta o requiere asistencia, no dude en ponerse en contacto con nosotros.</p>
+                <p>Si tiene alguna consulta o requiere asistencia, no dude en ponerse en contacto a personalizaciones@urbania.cr.</p>
                 <p><strong>Atentamente,</strong></p>
                 <p>Equipo Urbania</p>
                 <img src="cid:urbania_signature" alt="Urbania Signature" style="width: auto; height: auto;" />
