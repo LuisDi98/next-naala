@@ -196,7 +196,7 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
             id: 7,
             text: "Como desea el enchape de piso de baño cuarto principal?",
             options: [
-              { name: "Bahama Mate 60x60cm", image: "/Naala_assets/Acabados/Bahama Mate.jpg" },
+              { name: "Bahama Mate 60x60cm", image: "/Naala_assets/Acabados/Bahama Mate.jpeg" },
               { name: "Inter Mate 60x60cm", image: "/Naala_assets/Acabados/Inter Mate.jpeg" },
               { name: "Belen Marfil 30x60cm", image: "/Naala_assets/Acabados/Belen Marfil.jpg" },
             ],
@@ -205,7 +205,7 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
             id: 8,
             text: "Como desea el enchape de piso de baño auxiliar?",
             options: [
-              { name: "Bahama Mate 60x60cm", image: "/Naala_assets/Acabados/Bahama Mate.jpg" },
+              { name: "Bahama Mate 60x60cm", image: "/Naala_assets/Acabados/Bahama Mate.jpeg" },
               { name: "Inter Mate 60x60cm", image: "/Naala_assets/Acabados/Inter Mate.jpeg" },
               { name: "Belen Marfil 30x60cm", image: "/Naala_assets/Acabados/Belen Marfil.jpg" },
             ],
