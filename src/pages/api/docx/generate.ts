@@ -215,6 +215,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 <p>Si tiene alguna consulta o requiere asistencia, no dude en ponerse en contacto a:</p>
                 <a href="mailto:personalizaciones@urbania.cr" style="text-decoration: none; color: #007bff;">
                     personalizaciones@urbania.cr
+                </a>
+                </p>
                 <p><strong>Atentamente,</strong></p>
                 <p>Equipo Urbania</p>
                 <img src="cid:urbania_signature" alt="Urbania Signature" style="width: auto; height: auto;" />
