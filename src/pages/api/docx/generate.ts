@@ -220,7 +220,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 </a>
                 </p>
                 <p><strong>Atentamente,</strong></p>
-                <p>Equipo Urbania</p>
+                <p><strong>Equipo Urbania,<strong></p>
                 <img src="cid:urbania_signature" alt="Urbania Signature" style="width: auto; height: auto;" />
             `,
             attachments: [
