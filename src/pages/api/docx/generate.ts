@@ -213,6 +213,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 </a>
                 </p>
                 <p>Si tiene alguna consulta o requiere asistencia, no dude en ponerse en contacto a:</p>
+                </a>
+                <p style="font-size: 18px; font-weight: bold; text-align: center; color: #007bff;">
                 <a href="mailto:personalizaciones@urbania.cr" style="text-decoration: none; color: #007bff;">
                     personalizaciones@urbania.cr
                 </a>
