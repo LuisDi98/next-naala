@@ -195,7 +195,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 <p><strong>Importante:</strong> Si el contrato no se encuentra firmado de manera digital o escaneado con firma de puño y letra, no se podrá proceder con la personalización de su hogar.</p>
                 <hr style="border: none; border-top: 1px solid #ccc; margin: 20px 0;" />
                 <p style="font-size: 16px; font-weight: 500; text-align: center;">
-                Favor enviar la transferencia a la cuenta:
+                Favor enviar la transferencia a la siguiente cuenta en dolares:
                 </p>
                 <div style="border: 1px solid #ccc; border-radius: 10px; padding: 15px; text-align: center; font-size: 18px; font-weight: bold; background-color: #f9f9f9;">
                 <span style="color: #007bff;">IBAN: CR21010200009317285965</span> <br>
