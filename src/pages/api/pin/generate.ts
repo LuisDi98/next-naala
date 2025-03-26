@@ -45,7 +45,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
 
     const pinUnico = await generarPinUnico();
-    const expiresAt = new Date(Date.now() + 48 * 60 * 60 * 1000); // 48 horas desde ahora
+    const expiresAt = new Date(Date.now() + 720 * 60 * 60 * 1000); // 48 horas desde ahora
 
     // Intentamos crear el registro en la base de datos
     const newPin = await prisma.pin.create({
