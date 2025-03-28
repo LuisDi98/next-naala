@@ -76,7 +76,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         <p>Por este medio, le compartimos el enlace de acceso a la plataforma de personalización de su hogar:</p>
         <p><a href="https://urbania-custom.com/pin" target="_blank">Acceder a la personalización</a></p>
         <p>Para ingresar, el sistema le solicitará el siguiente PIN: <strong>${newPin.pin}</strong></p>
-        <p>Tenga en cuenta que este PIN es de único uso y tiene una vigencia de 48 horas a partir de la recepción de este correo.</p>
+        <p>Tenga en cuenta que este PIN es de único uso y tiene una vigencia de 7 días hábiles a partir de la recepción de este correo.</p>
         <p>Si tiene alguna consulta o requiere asistencia, no dude en ponerse en contacto con nosotros.</p>
         <p>Atentamente,<br>Equipo Urbania</p>
         <br />
