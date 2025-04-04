@@ -192,7 +192,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 <p>Estimado cliente,</p>
                 <p>Reciba un cordial saludo de parte de todo el equipo de Urbania.</p>
                 <p>Por este medio, le compartimos el documento donde podrá revisar y firmar su contrato de personalización.</p>
-                <p><strong>Importante:</strong> Si el contrato no se encuentra firmado de manera digital o escaneado con firma de puño y letra, no se podrá proceder con la personalización de su hogar.</p>
+                <p><strong>Importante:</strong> Si el contrato no se encuentra firmado de manera digital o escaneado con firma de puño y letra, no se podrá proceder con la personalización de su hogar Además, recordar no responder a este correo pues no se obtendrá respuesta.</p>
                 <hr style="border: none; border-top: 1px solid #ccc; margin: 20px 0;" />
                 <p style="font-size: 16px; font-weight: 500; text-align: center;">
                 Favor enviar la transferencia a la siguiente cuenta en dolares:
@@ -205,7 +205,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 Y envíe el comprobante al correo:
                 </p>
                 <p style="font-size: 18px; font-weight: bold; text-align: center; color: #28a745;">
-                <a href="mailto:mfernandez@urbania.cr" style="text-decoration: none; color: #28a745;">
+                <a href="mailto:lcastro@urbania.cr" style="text-decoration: none; color: #28a745;">
                     mfernandez@urbania.cr
                 <p style="font-size: 18px; font-weight: bold; text-align: center; color: #28a745;">
                 <a href="mailto:clientes@urbania.cr" style="text-decoration: none; color: #28a745;">
