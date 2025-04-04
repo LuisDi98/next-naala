@@ -215,7 +215,7 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
             text: "Como desea el enchape de paredes de ducha de cuarto principal?",
             options: [
               { name: "London Ash 30x60cm", image: "/Naala_assets/Acabados/London Ash.jpg" },
-              { name: "Geo avorio 30x60cm", image: "/Naala_assets/Acabados/Geo avorio.jpg" },
+              { name: "Geo avorio 30x60cm", image: "/Naala_assets/Acabados/Geo Avorio.jpg" },
               { name: "Martin Blanco 30x60cm", image: "/Naala_assets/Acabados/Martin Blanco.jpg" },
             ],
           },
@@ -224,7 +224,7 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
             text: "Como desea el enchape de paredes de ducha de baño auxiliar?",
             options: [
               { name: "London Ash 30x60cm", image: "/Naala_assets/Acabados/London Ash.jpg" },
-              { name: "Geo avorio 30x60cm", image: "/Naala_assets/Acabados/Geo avorio.jpg" },
+              { name: "Geo avorio 30x60cm", image: "/Naala_assets/Acabados/Geo Avorio.jpg" },
               { name: "Martin Blanco 30x60cm", image: "/Naala_assets/Acabados/Martin Blanco.jpg" },
             ],
           }
