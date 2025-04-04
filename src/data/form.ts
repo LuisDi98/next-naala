@@ -189,8 +189,8 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
             options: [
               { name: "Bahama Mate 60x60cm", image: "/Naala_assets/Acabados/Bahama Mate.jpeg" },
               { name: "Inter Mate 60x60cm", image: "/Naala_assets/Acabados/Inter Mate.jpeg" },
-              { name: "Tany Sand 60x60cm", image: "/Naala_assets/Acabados/Tany Sand.jpeg" },
-            ],
+              { name: "Tany Sand 60x60cm", image: "/Naala_assets/Acabados/Tany-Sand.jpeg" },
+            ], 
           },
           {
             id: 7,
@@ -198,7 +198,7 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
             options: [
               { name: "Bahama Mate 60x60cm", image: "/Naala_assets/Acabados/Bahama Mate.jpeg" },
               { name: "Inter Mate 60x60cm", image: "/Naala_assets/Acabados/Inter Mate.jpeg" },
-              { name: "Tany Sand 60x60cm", image: "/Naala_assets/Acabados/Tany Sand.jpeg" },
+              { name: "Tany Sand 60x60cm", image: "/Naala_assets/Acabados/Tany-Sand.jpeg" },
             ],
           },
           {
@@ -207,25 +207,25 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
             options: [
               { name: "Bahama Mate 60x60cm", image: "/Naala_assets/Acabados/Bahama Mate.jpeg" },
               { name: "Inter Mate 60x60cm", image: "/Naala_assets/Acabados/Inter Mate.jpeg" },
-              { name: "Tany Sand 60x60cm", image: "/Naala_assets/Acabados/Tany Sand.jpeg" },
+              { name: "Tany Sand 60x60cm", image: "/Naala_assets/Acabados/Tany-Sand.jpeg" },
             ],
           },
           {
             id: 9,
             text: "Como desea el enchape de paredes de ducha de cuarto principal?",
             options: [
-              { name: "London Ash 30x60cm", image: "/Naala_assets/Acabados/London Ash.jpg" },
-              { name: "Geo avorio 30x60cm", image: "/Naala_assets/Acabados/Geo Avorio.jpg" },
-              { name: "Martin Blanco 30x60cm", image: "/Naala_assets/Acabados/Martin Blanco.jpg" },
-            ],
-          },
+              { name: "London Ash 30x60cm", image: "/Naala_assets/Acabados/LONDON-ASH.jpeg" },
+              { name: "Geo avorio 30x60cm", image: "/Naala_assets/Acabados/GEO-AVORIO.jpeg" },
+              { name: "Martin Blanco 30x60cm", image: "/Naala_assets/Acabados/Martin-Blanco.jpg" },
+            ], 
+          }, 
           {
             id: 10,
             text: "Como desea el enchape de paredes de ducha de baño auxiliar?",
             options: [
-              { name: "London Ash 30x60cm", image: "/Naala_assets/Acabados/London Ash.jpg" },
-              { name: "Geo avorio 30x60cm", image: "/Naala_assets/Acabados/Geo Avorio.jpg" },
-              { name: "Martin Blanco 30x60cm", image: "/Naala_assets/Acabados/Martin Blanco.jpg" },
+              { name: "London Ash 30x60cm", image: "/Naala_assets/Acabados/LONDON-ASH.jpeg" },
+              { name: "Geo avorio 30x60cm", image: "/Naala_assets/Acabados/GEO-AVORIO.jpeg" },
+              { name: "Martin Blanco 30x60cm", image: "/Naala_assets/Acabados/Martin-Blanco.jpg" },
             ],
           }
         ]
