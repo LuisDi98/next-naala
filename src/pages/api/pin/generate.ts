@@ -77,7 +77,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         <p><a href="https://urbania-custom.com/pin" target="_blank">Acceder a la personalización</a></p>
         <p>Para ingresar, el sistema le solicitará el siguiente PIN: <strong>${newPin.pin}</strong></p>
         <p>Tenga en cuenta que este PIN es de único uso y tiene una vigencia de 24 horas a partir de la recepción de este correo.</p>
-        <p>Si tiene alguna consulta o requiere asistencia, no dude en ponerse en contacto con nosotros.</p>
+        <p>Si tiene alguna consulta o requiere asistencia, no dude en ponerse en contacto con nosotros, no responder a este correo pues es de envío masivo.</p>
+        <p>Presionar el botón de soporte o escribir a personalizaciones@urbania.cr.</p>
         <p>Atentamente,<br>Equipo Urbania</p>
         <br />
         <a href="mailto:personalizaciones@urbania.cr" style="background-color: #0056b3; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">
