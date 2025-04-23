@@ -206,7 +206,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 </p>
                 <p style="font-size: 18px; font-weight: bold; text-align: center; color: #28a745;">
                 <a href="mailto:lcastro@urbania.cr" style="text-decoration: none; color: #28a745;">
-                    mfernandez@urbania.cr
+                    lcastro@urbania.cr
                 <p style="font-size: 18px; font-weight: bold; text-align: center; color: #28a745;">
                 <a href="mailto:clientes@urbania.cr" style="text-decoration: none; color: #28a745;">
                     clientes@urbania.cr
