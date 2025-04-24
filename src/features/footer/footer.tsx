@@ -156,7 +156,7 @@ export default function Footer({ handleValidation, totalPrice, selectedOptions, 
         ) : (
           <>
             <Text fontSize="lg" fontWeight="medium">
-              Favor enviar la transferencia a la cuenta:
+              Favor enviar la transferencia a la cuenta en dolares:
             </Text>
             <Text
               fontSize="xl"
@@ -175,7 +175,7 @@ export default function Footer({ handleValidation, totalPrice, selectedOptions, 
               Y envíe el comprobante al correo:
             </Text>
             <Text fontSize="xl" fontWeight="bold" color="green.500" textAlign="center">
-              mfernandez@urbania.cr
+              personalizaciones@urbania.cr
             </Text>
           </>
         )}
