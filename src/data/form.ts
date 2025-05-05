@@ -115,8 +115,8 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
             text: "¿Qué tipo de acabados de muebles prefiere?",
             options: [
               { name: "Caramel", image: "/Naala_assets/Acabados_de_Muebles/CARAMEL.jpg" },
-              { name: "Roble Rustico", image: "/Naala_assets/Acabados_de_Muebles/Roble Provenzal.jpg" },
-              { name: "Roble Provenzal", image: "/Naala_assets/Acabados_de_Muebles/Roble Rustico.jpeg" },
+              { name: "Roble provenzal", image: "/Naala_assets/Acabados_de_Muebles/Roble Provenzal.jpg" },
+              { name: "Roble rustico", image: "/Naala_assets/Acabados_de_Muebles/Roble Rustico.jpeg" },
             ], 
           },
           {
