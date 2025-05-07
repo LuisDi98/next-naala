@@ -52,7 +52,7 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
     20: { "Si": 660, "No": 0 },
     21: { 
       "Granito Blanco Báltico": 0, "Granito Gran Perla": 0,
-      "Granito Gran Cuarzo Snow White": 0, "Cuarzo Vulcano": 87
+      "Granito Gran Cuarzo Snow White": 0, "Cuarzo Vulcano": 98
      },
   };
   
