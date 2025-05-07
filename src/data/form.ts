@@ -36,7 +36,7 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
 
   const model3Pricing = {
     1: { "Caramel": 0, "Roble provenzal": 0, "Roble rustico": 0 },
-    2: { "Ambos": 649, "Ninguno": 0 },
+    2: { "Ambos": 689, "Ninguno": 0 },
     3: { "Si": 179, "No": 0 },
     4: { "Si": 150, "No": 0 },
     5: { "Si": 209, "No": 0 },
@@ -59,7 +59,7 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
   const modelPricing: any = {
     Modelo_1: {
       1: { "Caramel": 0, "Roble provenzal": 0, "Roble rustico": 0 },
-      2: { "Ambos": 649, "Ninguno": 0 },
+      2: { "Ambos": 689, "Ninguno": 0 },
       3: { "Si": 100, "No": 0 },
       4: { "Si": 150, "No": 0 },
       5: { "Si": 209, "No": 0 },
@@ -79,7 +79,7 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
     },
     Modelo_2: {
       1: { "Caramel": 0, "Roble provenzal": 0, "Roble rustico": 0 },
-      2: { "Ambos": 649, "Ninguno": 0 },
+      2: { "Ambos": 689, "Ninguno": 0 },
       3: { "Si": 124, "No": 0 },
       4: { "Si": 150, "No": 0 },
       5: { "Si": 209, "No": 0 },
