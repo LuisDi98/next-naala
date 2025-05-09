@@ -189,7 +189,7 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
             options: [
               { name: "Bahama Mate 60x60cm", image: "/Naala_assets/Acabados/Bahama Mate.jpeg" },
               { name: "Inter Mate 60x60cm", image: "/Naala_assets/Acabados/Inter Mate.jpeg" },
-              { name: "Tany Sand 60x60cm", image: "/Naala_assets/Acabados/Tany-Sand.jpeg" },
+              { name: "Tany Sand 30x60cm", image: "/Naala_assets/Acabados/Tany-Sand.jpeg" },
             ], 
           },
           {
@@ -198,7 +198,7 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
             options: [
               { name: "Bahama Mate 60x60cm", image: "/Naala_assets/Acabados/Bahama Mate.jpeg" },
               { name: "Inter Mate 60x60cm", image: "/Naala_assets/Acabados/Inter Mate.jpeg" },
-              { name: "Tany Sand 60x60cm", image: "/Naala_assets/Acabados/Tany-Sand.jpeg" },
+              { name: "Tany Sand 30x60cm", image: "/Naala_assets/Acabados/Tany-Sand.jpeg" },
             ],
           },
           {
@@ -207,7 +207,7 @@ const addPricesToModel = (modelName: string, categories: any[]) => {
             options: [
               { name: "Bahama Mate 60x60cm", image: "/Naala_assets/Acabados/Bahama Mate.jpeg" },
               { name: "Inter Mate 60x60cm", image: "/Naala_assets/Acabados/Inter Mate.jpeg" },
-              { name: "Tany Sand 60x60cm", image: "/Naala_assets/Acabados/Tany-Sand.jpeg" },
+              { name: "Tany Sand 30x60cm", image: "/Naala_assets/Acabados/Tany-Sand.jpeg" },
             ],
           },
           {
