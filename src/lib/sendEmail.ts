@@ -10,11 +10,11 @@ export interface MailOptions {
 export const sendEmail = async (mailOptions: MailOptions) => {
   const transporter = nodemailer.createTransport({
     host: "smtp.hostinger.com",
-    port: 465,
-    secure: true,
+    port: 587,
+    secure: false,
     auth: {
-      user: "info@urbania-custom.com",
-      pass: "UrbaniaInfo2025!!",
+      user: "information@urbania-custom.com",
+      pass: "UrbaniaInfo2025??",
     },
     /*
     logger: true, // Habilitar logs detallados
