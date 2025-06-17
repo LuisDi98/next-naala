@@ -13,8 +13,8 @@ export const sendEmail = async (mailOptions: MailOptions) => {
     port: 587,
     secure: false,
     auth: {
-      user: "info@urbania-custom.com",
-      pass: "UrbaniaInfo2025!!",
+      user: "information@urbania-custom.com",
+      pass: "UrbaniaInfo2025??",
     },
     /*
     logger: true, // Habilitar logs detallados
